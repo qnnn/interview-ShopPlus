@@ -42,6 +42,11 @@
             <version>2.2.3.RELEASE</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-datasource-nacos</artifactId>
+        </dependency>
+
         <!-- Commons -->
 <!--        <dependency>-->
 <!--            <groupId>com.squareup.okhttp3</groupId>-->

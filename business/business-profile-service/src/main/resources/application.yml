@@ -13,6 +13,13 @@ spring:
     sentinel:
       transport:
         dashboard: localhost:8765
+      datasource:
+        ds:
+          nacos:
+            server-addr: 192.168.229.150:8848
+            data-id: Sentinel-Data
+            data-type: json
+            rule-type: flow
 
 
 
