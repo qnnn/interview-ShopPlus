@@ -1,0 +1,58 @@
+spring:
+  application:
+    name: gateway
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    # 使用 Nacos 作为服务注册发现
+    nacos:
+      discovery:
+        server-addr: 192.168.229.150:8848
+    # 路由网关配置
+    gateway:
+      # 解决跨域问题
+#      globalcors:
+#        cors-configurations:
+#          '[/**]':
+#            allowedOrigins: "*"
+#            allowedMethods: "*"
+#            allowedHeaders: "*"
+      # 设置与注册发现组件结合，这样可以采用服务名的路由策略
+      discovery:
+        locator:
+          enabled: true
+      # 配置路由规则
+
+      routes:
+        # 采取自定义路由 ID（有固定用法，不同的 id 有不同的功能，详见 https://cloud.spring.io/spring-cloud-gateway/reference/html/
+        - id: BUSINESS-OAUTH2
+          # 采用 LoadBalanceClient 方式请求，以lb：// 开头，后面的是注册在 Nacos 上的服务名
+          uri: lb://business-oauth2
+          # Predicate 翻译为“谓词”的意思，必须，主要作用是配置用户的请求，有多种用法
+          predicates:
+            # 路径匹配，以 api 开头，直接匹配是不生效的，看 filter 配置
+            - Path=/api/vue-admin-template/user/**
+          filters:
+            # 前缀过滤，默认配置下，请求路径是 localhost:8888/business-oauth2/** 这时会路由到指定的服务
+            # 此处配置去掉 1 个路径前缀，再配置上面的 Path=/api/**，就能按照 localhost:8888/api/** 的方式访问了
+            - StripPrefix=1
+        - id: BUSINESS-PROFILE
+          uri: lb://business-profile
+          predicates:
+            - Path=/api/profile/**
+          filters:
+            - StripPrefix=1
+        - id: CLOUD-UPLOAD
+          uri: lb://cloud-upload
+          predicates:
+            - Path=/api/upload/**
+          filters:
+            - StripPrefix=1
+
+server:
+  port: 8888
+
+# 配置日志级别，方便调试
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
