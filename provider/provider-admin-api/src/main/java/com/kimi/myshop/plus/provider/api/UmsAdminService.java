@@ -5,7 +5,7 @@ import com.kimi.myshop.plus.provider.domain.UmsAdmin;
 /**
  *
  *
- * @author chenmc
+ * @author 郭富城
  * @date 2020/11/21 1:35
  * @param
  * @return
@@ -15,7 +15,7 @@ public interface UmsAdminService {
     /**
      *  新增用户
      *
-     * @author chenmc
+     * @author 郭富城
      * @date 2020/11/21 12:29
      * @param umsAdmin {@link UmsAdmin}
      * @return int 大于0表示新增成功
@@ -25,7 +25,7 @@ public interface UmsAdminService {
     /**
      *  获取用户
      *
-     * @author chenmc
+     * @author 郭富城
      * @date 2020/11/21 14:06
      * @param username {@link UmsAdmin}
      * @return com.kimi.myshop.plus.provider.domain.UmsAdmin
@@ -35,7 +35,7 @@ public interface UmsAdminService {
     /**
      *  获取用户
      *
-     * @author chenmc
+     * @author 郭富城
      * @date 2020/11/21 14:06
      * @param umsAdmin {@link UmsAdmin}
      * @return com.kimi.myshop.plus.provider.domain.UmsAdmin
@@ -45,7 +45,7 @@ public interface UmsAdminService {
     /**
      * 更新个人信息
      *
-     * @author chenmc
+     * @author 郭富城
      * @date 2021/1/27 17:17
      * @param [umsAdmin]
      * @return int

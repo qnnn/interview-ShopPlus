@@ -17,7 +17,7 @@ import java.util.Date;
  * 用户管理服务
  *
  * @param
- * @author chenmc
+ * @author 郭富城
  * @date 2020/11/21 12:32
  * @return
  */
@@ -99,7 +99,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
      *
      * @param umsAdmin
      * @return void
-     * @author chenmc
+     * @author 郭富城
      * @date 2020/11/21 14:13
      */
     private void initUmsAdmin(UmsAdmin umsAdmin) {

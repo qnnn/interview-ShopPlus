@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  *  登录信息.
  *
- * @author chenmc
+ * @author 郭富城
  * @date 2020/11/22 16:23
  * @param
  * @return

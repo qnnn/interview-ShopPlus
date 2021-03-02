@@ -10,7 +10,7 @@ public class ProfileControllerFallback {
 
     public static final Logger logger = LoggerFactory.getLogger(ProfileControllerFallback.class);
 
-    public static ResponseResult<UmsAdminDto> infoFallback(String username,Throwable throwable){
+    public static ResponseResult<UmsAdminDto> getInfoFallback(String username,Throwable throwable){
         logger.warn("invoke getInfoFallback" + throwable.getClass().getTypeName());
 
         return new ResponseResult<>(ResponseResult.CodeStatus.BREAKING, ProfileFeignFallback.BREAKING_MESSAGE);

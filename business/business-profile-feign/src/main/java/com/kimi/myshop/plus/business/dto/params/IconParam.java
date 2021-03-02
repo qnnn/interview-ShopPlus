@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  *  Icon DTO
  *
- * @author chenmc
+ * @author 郭富城
  * @date 2021/1/29 14:04
  * @param
  * @return

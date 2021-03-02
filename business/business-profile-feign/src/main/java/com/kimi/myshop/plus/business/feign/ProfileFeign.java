@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 /**
  *  在注册中心调用business-profile服务，定义当前feignClient的统一前缀为profile
  *
- * @author chenmc
+ * @author 郭富城
  * @date 2021/1/24 20:18
  * @param
  * @return

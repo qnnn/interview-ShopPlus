@@ -16,9 +16,9 @@ public class UmsAdminServiceFallback {
     /**
      * 此处必须为static
      * 通过用户名得到对象的回调函数
-     * @param username
-     * @param throwable
-     * @return
+     * @param username 用户名
+     * @param throwable 异常
+     * @return 不返回
      */
     public static UmsAdmin getByUsernameFallback(String username,Throwable throwable){
 

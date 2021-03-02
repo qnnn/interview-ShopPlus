@@ -38,23 +38,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         UmsAdmin umsAdmin = umsAdminService.get(s);
 
-        // 账号存在
+        // 账号存在，则授予 USER 权限
         if(umsAdmin!=null){
             return new User(umsAdmin.getUsername(),umsAdmin.getPassword(),grantedAuthorities);
         }
 
         return null;
-
-        // 用户名匹配
-//        if (s.equals(USERNAME)){
-//            List<GrantedAuthority> grantedAuthorities= Lists.newArrayList();
-//            // 临时授权
-//            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("USER");
-//            return new User(USERNAME,PASSWORD,grantedAuthorities);
-//        }
-        // 用户名不匹配
-//        else {
-//            return null;
-//        }
     }
 }

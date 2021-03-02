@@ -27,7 +27,7 @@ public class RegController {
     /**
      *  注册
      *
-     * @author chenmc
+     * @author 郭富城
      * @date 2020/11/21 14:02
      * @param umsAdmin {@link UmsAdmin}
      * @return com.kimi.myshop.plus.commons.dto.ResponseResult<com.kimi.myshop.plus.provider.domain.UmsAdmin> {@link ResponseResult}
@@ -55,7 +55,7 @@ public class RegController {
     /**
      *  注册信息验证
      *
-     * @author chenmc
+     * @author 郭富城
      * @date 2020/11/21 14:01
      * @param umsAdmin {@link UmsAdmin}
      * @return java.lang.String 验证结果

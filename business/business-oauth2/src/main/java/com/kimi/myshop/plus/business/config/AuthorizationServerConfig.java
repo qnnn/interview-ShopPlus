@@ -37,7 +37,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     /**
      *  注入用于支持 password 模式
      *
-     * @author chenmc
+     * @author 郭富城
      * @date 2020/11/21 21:05
      * @param
      * @return

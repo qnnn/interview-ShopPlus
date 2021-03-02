@@ -41,7 +41,7 @@ public class ProfileController {
     /**
      *  更新个人信息
      *
-     * @author chenmc
+     * @author 郭富城
      * @date 2021/1/27 16:10
      * @param [profileParam] 个人信息参数
      * @return com.kimi.myshop.plus.commons.dto.ResponseResult<java.lang.Void>

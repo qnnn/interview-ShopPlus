@@ -8,6 +8,14 @@ import com.kimi.myshop.plus.commons.dto.ResponseResult;
 import com.kimi.myshop.plus.commons.utils.MapperUtils;
 import org.springframework.stereotype.Component;
 
+/**
+ * Feign 熔断实现，profile 服务停止时，触发熔断
+ *
+ * @author 郭富城
+ * @date 2021/1/2 17:27
+ * @param
+ * @return
+ */
 @Component
 public class ProfileFeignFallback implements ProfileFeign {
 
