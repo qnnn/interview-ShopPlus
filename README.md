@@ -57,6 +57,56 @@
 |     provider     |  管理员提供服务  | null |
 
 
+## Docker Compose 配置
+
+### nacos+mysql
+
+```yaml
+version: "2"
+services:
+  nacos:
+    image: nacos/nacos-server:1.3.1
+    container_name: nacos-standalone-mysql
+    env_file:
+      - ../env/nacos-standlone-mysql.env
+    volumes:
+      - ./standalone-logs/:/home/nacos/logs
+      - ./init.d/custom.properties:/home/nacos/init.d/custom.properties
+    ports:
+      - "8848:8848"
+      - "9555:9555"
+    depends_on:
+      - mysql
+    restart: always
+  mysql:
+    container_name: mysql
+    image: nacos/nacos-mysql:8.0.16
+    env_file:
+      - ../env/mysql.env
+    volumes:
+      - ./mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    restart: always
+```
+
+
+
+### redis
+
+```yaml
+version: '3'
+services:
+        redis:
+                restart: always
+                image: redis
+                container_name: redis
+                ports:
+                        - 6379:6379
+```
+
+
+
 
 
 
