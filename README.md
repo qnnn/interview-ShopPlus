@@ -108,11 +108,19 @@ services:
                         - 6379:6379
 ```
 
-## 服务列表
-![image-20210303191203330](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20210303191203330.png)
-
-
-
+## Sentinel + nacos 限流规则持久化
+```json
+[
+    {
+        "resource": "getInfo", 
+        "count": 1,
+        "grade": 1,
+        "limitApp": "default",
+        "strategy": 0,
+        "controlBehavior": 0
+    }
+]
+```
 
 
 
