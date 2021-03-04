@@ -111,7 +111,6 @@ services:
 ## Sentinel + nacos 限流规则持久化
 ```json
 [
-# 只是简单试验，所以暂时只列了一个规则
     {
         "resource": "getInfo", 
         "count": 1,
@@ -122,6 +121,7 @@ services:
     }
 ]
 ```
+> 只是简单试验，所以只写了一个规则
 
 
 
