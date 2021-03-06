@@ -85,7 +85,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     /**
      * 重置密码
      * @param username 用户名
-     * @param password
+     * @param password 密码
      */
     @Override
     public int modifyPassword(String username, String password) {
@@ -97,7 +97,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     /**
      * 初始化用户对象
      *
-     * @param umsAdmin
+     * @param umsAdmin 用户信息
      * @return void
      * @author 郭富城
      * @date 2020/11/21 14:13
