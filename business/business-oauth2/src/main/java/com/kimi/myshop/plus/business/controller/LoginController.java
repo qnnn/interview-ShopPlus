@@ -2,6 +2,8 @@ package com.kimi.myshop.plus.business.controller;
 import java.util.Date;
 
 import com.google.common.collect.Maps;
+import com.kimi.myshop.plus.business.BusinessException;
+import com.kimi.myshop.plus.business.BusinessStatus;
 import com.kimi.myshop.plus.business.dto.LoginInfo;
 import com.kimi.myshop.plus.business.dto.LoginParam;
 import com.kimi.myshop.plus.business.feign.ProfileFeign;
@@ -88,7 +90,8 @@ public class LoginController {
         // 验证账号密码
         UserDetails userDetails = userDetailsService.loadUserByUsername(loginParam.getUsername());
         if (userDetails == null || !passwordEncoder.matches(loginParam.getPassword(), userDetails.getPassword())) {
-            return new ResponseResult<Map<String, Object>>(ResponseResult.CodeStatus.FAIL, "账号或密码错误", null);
+            throw new BusinessException(BusinessStatus.ADMIN_PASSWORD);
+            //return new ResponseResult<Map<String, Object>>(ResponseResult.CodeStatus.FAIL, "账号或密码错误", null);
         }
 
         // 通过 HTTP 客户端请求登录接口

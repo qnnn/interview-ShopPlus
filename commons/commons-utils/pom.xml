@@ -21,6 +21,11 @@
     </licenses>
 
     <dependencies>
+        <!-- Spring Boot -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
         <!-- Commons -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -43,8 +48,9 @@
             <artifactId>UserAgentUtils</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
+            <groupId>com.kimi.shop.plus</groupId>
+            <artifactId>commons-dto</artifactId>
+            <version>${project.parent.version}</version>
         </dependency>
     </dependencies>
 
