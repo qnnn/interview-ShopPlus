@@ -1,12 +1,17 @@
 package com.kimi.myshop.plus.business.controller;
+import java.util.Date;
 
 import com.google.common.collect.Maps;
 import com.kimi.myshop.plus.business.dto.LoginInfo;
 import com.kimi.myshop.plus.business.dto.LoginParam;
 import com.kimi.myshop.plus.business.feign.ProfileFeign;
+import com.kimi.myshop.plus.cloud.api.MessageProducer;
+import com.kimi.myshop.plus.cloud.dto.AdminLoginLogDTO;
+import com.kimi.myshop.plus.cloud.feign.MessageFeign;
 import com.kimi.myshop.plus.commons.dto.ResponseResult;
 import com.kimi.myshop.plus.commons.utils.MapperUtils;
 import com.kimi.myshop.plus.commons.utils.OkHttpClientUtil;
+import com.kimi.myshop.plus.commons.utils.UserAgentUtils;
 import com.kimi.myshop.plus.provider.api.UmsAdminService;
 import com.kimi.myshop.plus.provider.domain.UmsAdmin;
 import org.apache.dubbo.config.annotation.Reference;
@@ -68,8 +73,15 @@ public class LoginController {
     @Resource
     public ProfileFeign profileFeign;
 
+    @Reference(version = "1.0.0")
+    public MessageProducer producer;
+
+
+
+
+
     @PostMapping(value = "/vue-admin-template/user/login")
-    public ResponseResult<Map<String, Object>> login(@RequestBody LoginParam loginParam) {
+    public ResponseResult<Map<String, Object>> login(@RequestBody LoginParam loginParam,HttpServletRequest request) {
         // 封装返回的结果集
         Map<String, Object> result = Maps.newHashMap();
 
@@ -95,7 +107,7 @@ public class LoginController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        sendAdminLoginLog(loginParam.getUsername(),request);
         // 更新登录时间
         umsAdminService.updateLoginTime(loginParam.getUsername());
 
@@ -129,5 +141,23 @@ public class LoginController {
         return new ResponseResult<Void>(ResponseResult.CodeStatus.OK, "用户注销", null);
     }
 
+    private void sendAdminLoginLog(String username,HttpServletRequest request){
+        UmsAdmin umsAdmin = umsAdminService.get(username);
+
+        String ipAddr = UserAgentUtils.getIpAddr(request);
+        String city = UserAgentUtils.getIpInfo(ipAddr).getCity();
+        String name = UserAgentUtils.getBrowser(request).getName();
+
+
+        AdminLoginLogDTO dto = new AdminLoginLogDTO();
+        dto.setAdminId(umsAdmin.getId());
+        dto.setCreateTime(new Date());
+        dto.setIp(ipAddr);
+        dto.setAddress(city);
+        dto.setUserAgent(name);
+
+        producer.sendAdminLoginLog(dto);
+
+    }
 
 }

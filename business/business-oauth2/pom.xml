@@ -132,7 +132,6 @@
         </dependency>
 
         <!-- Projects -->
-
         <dependency>
             <groupId>com.kimi.shop.plus</groupId>
             <artifactId>provider-admin-api</artifactId>
@@ -141,6 +140,11 @@
         <dependency>
             <groupId>com.kimi.shop.plus</groupId>
             <artifactId>business-profile-feign</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.kimi.shop.plus</groupId>
+            <artifactId>cloud-message-feign</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
 

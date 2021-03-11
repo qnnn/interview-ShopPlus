@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
 
 /**
+ * 封装请求
+ *
  * @author 郭富城
  */
 public class FeignRequestInterceptor implements RequestInterceptor {

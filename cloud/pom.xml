@@ -12,6 +12,29 @@
     <artifactId>cloud</artifactId>
     <packaging>pom</packaging>
     <url>http://www.kimi.com</url>
+    <dependencies>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+
+        <!-- Projects -->
+        <dependency>
+            <groupId>com.kimi.shop.plus</groupId>
+            <artifactId>commons-dto</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.kimi.shop.plus</groupId>
+            <artifactId>commons-utils</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+    </dependencies>
 
     <licenses>
         <license>
@@ -31,5 +54,7 @@
     <modules>
         <module>cloud-upload-feign</module>
         <module>cloud-upload-service</module>
+        <module>cloud-message-feign</module>
+        <module>cloud-message-service</module>
     </modules>
 </project>

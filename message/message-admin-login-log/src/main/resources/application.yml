@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: message-admin-login-log
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    stream:
+      rocketmq:
+        binder:
+          name-server: 192.168.229.150:9876
+      bindings:
+        input:
+          destination: admin-login-log-topic
+          group: admin-login-log-group
+#          content-type: text/plain
+#          consumer.maxAttempts: 1
+
+
+dubbo:
+  scan:
+    base-packages: com.kimi.myshop.plus.message.consumer
+  protocol:
+    name: dubbo
+    port: -1
+    serialization: kryo
+  registry:
+    address: nacos://192.168.229.150:8848
+    port: 80
+server:
+  port: 9887

@@ -1,5 +1,6 @@
 package com.kimi.myshop.plus.business;
 
+import com.kimi.myshop.plus.cloud.feign.MessageFeign;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,7 +11,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * OAuth2服务.
  * @author 郭富城
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackageClasses = {BusinessOauth2Application.class},scanBasePackages = "com.kimi.myshop.plus.cloud.feign")
 @EnableDiscoveryClient
 @EnableFeignClients
 public class BusinessOauth2Application {

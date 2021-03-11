@@ -24,6 +24,7 @@
         <module>configuration</module>
         <module>gateway</module>
         <module>cloud</module>
+        <module>message</module>
     </modules>
 
     <properties>

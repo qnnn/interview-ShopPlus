@@ -1,0 +1,59 @@
+# 设置服务器上传文件的大小
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10485760
+
+  application:
+    name: cloud-message
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.229.150:8848
+    stream:
+      rocketmq:
+        binder:
+          name-server: 192.168.229.150:9876
+      bindings:
+        output:
+          destination: admin-login-log-topic
+          content-type: application/json
+        # rocketmq 重topic,数据类型设置为json格式
+
+
+dubbo:
+  scan:
+    base-packages: com.kimi.myshop.plus.cloud.producer
+  protocol:
+    name: dubbo
+    port: -1
+    serialization: kryo
+  registry:
+    address: nacos://192.168.229.150:8848
+    port: 80
+  application:
+    name: MessageFeign
+
+security:
+  oauth2:
+    client:
+      client-id: client
+      client-secret: secret
+      access-token-uri: http://localhost:9001/oauth/token
+      user-authorization-uri: http://localhost:9001/oauth/authorize
+    resource:
+      token-info-uri: http://localhost:9001/oauth/check_token
+
+server:
+  # ${random.int[9000,9999]} 随机端口
+  port: 9888
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+

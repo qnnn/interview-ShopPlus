@@ -49,6 +49,7 @@
             <artifactId>spring-cloud-starter-oauth2</artifactId>
         </dependency>
 
+
         <!-- Spring Cloud Alibaba -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
@@ -62,16 +63,6 @@
         </dependency>
 
         <!-- Projects -->
-        <dependency>
-            <groupId>com.kimi.shop.plus</groupId>
-            <artifactId>commons-dto</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.kimi.shop.plus</groupId>
-            <artifactId>commons-utils</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
         <dependency>
             <groupId>com.kimi.shop.plus</groupId>
             <artifactId>cloud-upload-feign</artifactId>
