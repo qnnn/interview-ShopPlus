@@ -1,9 +1,5 @@
 # interview-ShopPlus
 
-## 说明
-    该项目并未完成
-
-
 
 ## 云组件
 
