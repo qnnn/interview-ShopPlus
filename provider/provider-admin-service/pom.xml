@@ -89,11 +89,7 @@
             <artifactId>velocity-engine-core</artifactId>
         </dependency>
 
-        <!-- lombok -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
+
 
         <!-- Projects -->
         <dependency>
@@ -102,6 +98,11 @@
             <version>${project.parent.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.kimi.shop.plus</groupId>
+            <artifactId>logging</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

@@ -6,8 +6,10 @@ import com.kimi.myshop.plus.business.dto.UmsAdminDto;
 import com.kimi.myshop.plus.business.dto.params.IconParam;
 import com.kimi.myshop.plus.business.dto.params.ProfileParam;
 import com.kimi.myshop.plus.commons.dto.ResponseResult;
+import com.kimi.myshop.plus.business.annotation.Log;
 import com.kimi.myshop.plus.provider.api.UmsAdminService;
 import com.kimi.myshop.plus.provider.domain.UmsAdmin;
+import lombok.RequiredArgsConstructor;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping(value = "profile")
 public class ProfileController {
@@ -47,6 +50,7 @@ public class ProfileController {
      * @return com.kimi.myshop.plus.commons.dto.ResponseResult<java.lang.Void>
      */
     @PostMapping(value = "update")
+    @Log("更改个人信息")
     public ResponseResult<Void> update(@RequestBody ProfileParam profileParam){
         UmsAdmin umsAdmin=new UmsAdmin();
         BeanUtils.copyProperties(profileParam,umsAdmin);
@@ -67,7 +71,10 @@ public class ProfileController {
      * @return 返回成功与否
      */
     @PostMapping(value = "modify/icon")
+    @Log("修改头像")
     private ResponseResult<Void> modifyIcon(@RequestBody IconParam iconParam){
+        UmsAdmin umsAdmin=new UmsAdmin();
+
         int result = umsAdminService.modifyIcon(iconParam.getUsername(),iconParam.getPath());
         // 成功
         if (result>0){

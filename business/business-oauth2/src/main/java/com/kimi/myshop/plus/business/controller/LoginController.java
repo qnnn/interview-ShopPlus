@@ -20,6 +20,7 @@ import org.apache.dubbo.config.annotation.Reference;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -44,7 +45,6 @@ import java.util.Map;
  * @date 2020/11/22 1:08
  * @return
  */
-//@CrossOrigin
 @RestController
 public class LoginController {
 
@@ -117,6 +117,7 @@ public class LoginController {
         return new ResponseResult<Map<String, Object>>(ResponseResult.CodeStatus.OK, "登录成功", result);
     }
 
+    @PreAuthorize("hasAuthority('USER')")
     @GetMapping(value = "/vue-admin-template/user/info")
     public ResponseResult<LoginInfo> info() throws Exception {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -135,7 +136,7 @@ public class LoginController {
         return new ResponseResult<LoginInfo>(ResponseResult.CodeStatus.OK, "获取用户信息", loginInfo);
     }
 
-
+    @PreAuthorize("hasAuthority('USER')")
     @PostMapping(value = "/vue-admin-template/user/logout")
     public ResponseResult<Void> logout(HttpServletRequest request) {
         String token = request.getParameter("access_token");
