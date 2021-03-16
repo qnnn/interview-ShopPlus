@@ -19,6 +19,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * 个人信息管理
+ *
+ * @author 郭富城
+ */
 @RequiredArgsConstructor
 @RestController
 @RequestMapping(value = "profile")
@@ -73,7 +78,7 @@ public class ProfileController {
     @PostMapping(value = "modify/icon")
     @Log("修改头像")
     private ResponseResult<Void> modifyIcon(@RequestBody IconParam iconParam){
-        UmsAdmin umsAdmin=new UmsAdmin();
+
 
         int result = umsAdminService.modifyIcon(iconParam.getUsername(),iconParam.getPath());
         // 成功

@@ -1,5 +1,6 @@
 package com.kimi.myshop.plus.business.controller;
 
+import com.kimi.myshop.plus.commons.dto.ResponseResult;
 import com.kimi.myshop.plus.commons.utils.SecurityUtils;
 import com.kimi.myshop.plus.business.annotation.Log;
 import com.kimi.myshop.plus.business.service.LogService;
@@ -26,7 +27,7 @@ import java.io.IOException;
  */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/logs")
+@RequestMapping("logs")
 public class LogController {
 
     private final LogService logService;
@@ -46,11 +47,13 @@ public class LogController {
         criteria.setLogType("ERROR");
         logService.download(logService.queryAll(criteria), response);
     }
+
     @GetMapping
     @PreAuthorize("hasAuthority('USER')")
-    public ResponseEntity<Object> query(LogQueryCriteria criteria, Pageable pageable){
+    public ResponseResult<Object> query(LogQueryCriteria criteria, Pageable pageable){
         criteria.setLogType("INFO");
-        return new ResponseEntity<>(logService.queryAll(criteria,pageable), HttpStatus.OK);
+        return new ResponseResult<>(ResponseResult.CodeStatus.OK,logService.queryAll(criteria, pageable));
+//        return new ResponseEntity<>(logService.queryAll(criteria,pageable), HttpStatus.OK);
     }
 
     @GetMapping(value = "/user")
@@ -72,6 +75,7 @@ public class LogController {
     public ResponseEntity<Object> queryErrorLogs(@PathVariable Long id){
         return new ResponseEntity<>(logService.findByErrDetail(id), HttpStatus.OK);
     }
+
     @DeleteMapping(value = "/del/error")
     @Log("删除所有ERROR日志")
     @PreAuthorize("hasAuthority('USER')")

@@ -39,7 +39,7 @@ spring:
         - id: BUSINESS-PROFILE
           uri: lb://business-profile
           predicates:
-            - Path=/api/profile/**
+            - Path=/api/profile/**,/api/logs/**
           filters:
             - StripPrefix=1
         - id: CLOUD-UPLOAD
@@ -48,6 +48,7 @@ spring:
             - Path=/api/upload/**
           filters:
             - StripPrefix=1
+
 
 server:
   port: 8888

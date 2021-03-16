@@ -17,7 +17,6 @@ import com.kimi.myshop.plus.commons.utils.UserAgentUtils;
 import com.kimi.myshop.plus.provider.api.UmsAdminService;
 import com.kimi.myshop.plus.provider.domain.UmsAdmin;
 import org.apache.dubbo.config.annotation.Reference;
-import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;

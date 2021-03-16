@@ -37,6 +37,8 @@ public class ResponseResult<T> implements Serializable {
         super();
     }
 
+
+
     public ResponseResult(Integer code) {
         super();
         this.code = code;
@@ -47,6 +49,8 @@ public class ResponseResult<T> implements Serializable {
         this.code = code;
         this.message = message;
     }
+
+
 
     public ResponseResult(Integer code, Throwable throwable) {
         super();

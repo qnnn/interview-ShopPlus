@@ -1,5 +1,6 @@
 package com.kimi.myshop.plus.cloud.controller;
 
+import com.kimi.myshop.plus.business.annotation.Log;
 import com.kimi.myshop.plus.cloud.dto.FileInfo;
 import com.kimi.myshop.plus.commons.dto.ResponseResult;
 import com.qcloud.cos.COSClient;
@@ -51,6 +52,7 @@ public class UploadController {
 
 
     @PostMapping(value = "")
+    @Log("上传文件")
     public ResponseResult<FileInfo> upload(MultipartFile multipartFile){
         // 获取文件名
         String fileName = multipartFile.getOriginalFilename();

@@ -50,12 +50,6 @@
             <artifactId>spring-cloud-starter-oauth2</artifactId>
         </dependency>
 
-        <!-- Mybatis-plus -->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-        </dependency>
-
         <!-- Spring Cloud Alibaba -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
