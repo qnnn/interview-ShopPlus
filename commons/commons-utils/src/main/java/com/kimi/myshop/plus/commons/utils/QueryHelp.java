@@ -21,10 +21,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * @author Zheng Jie
- * @date 2019-6-4 14:59:48
- */
+
 @Slf4j
 @SuppressWarnings({"unchecked","all"})
 public class QueryHelp {

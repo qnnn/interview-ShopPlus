@@ -15,8 +15,6 @@ import java.util.Map;
 /**
  * Jackson 工具类
  *
- * @author liuxiaojun
- * @date 2019-03-02 21:09
  * ------------------- History -------------------
  * <date>      <author>       <desc>
  * 2019-03-02   liuxiaojun     初始创建
