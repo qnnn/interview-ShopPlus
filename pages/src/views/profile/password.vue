@@ -1,11 +1,9 @@
-<template>
-
-</template>
+<template />
 
 <script>
-    export default {
-        name: "password"
-    }
+export default {
+  name: 'Password'
+}
 </script>
 
 <style scoped>
