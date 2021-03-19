@@ -6,6 +6,10 @@ import com.kimi.myshop.plus.commons.dto.ResponseResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * sentinel 异常回调
+ * @author 郭富城
+ */
 public class ProfileControllerFallback {
 
     public static final Logger logger = LoggerFactory.getLogger(ProfileControllerFallback.class);
