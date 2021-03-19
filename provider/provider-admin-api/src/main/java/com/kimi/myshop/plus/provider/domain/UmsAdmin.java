@@ -24,8 +24,8 @@ import javax.persistence.Table;
 @Table(name = "ums_admin")
 public class UmsAdmin implements Serializable {
 
-    private static final long serialVersionUID = -5604007880179803027L;
 
+    private static final long serialVersionUID = 5409377087953191756L;
     @Id
     @Column(name = "id")
     @GeneratedValue(generator = "JDBC")

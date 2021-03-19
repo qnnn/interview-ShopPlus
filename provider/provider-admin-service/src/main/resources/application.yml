@@ -29,6 +29,8 @@ dubbo:
   registry:
     address: nacos://192.168.229.150:8848
     port: 80
+  consumer:
+    timeout: 10000
 
 mybatis-plus:
   mapper-locations: classpath:mapper/**/*.xml

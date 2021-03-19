@@ -13,7 +13,7 @@ spring:
 
 dubbo:
   scan:
-    base-packages: com.funtl.myshop.plus.business.controller
+    base-packages: com.kimi.myshop.plus.business.controller
   protocol:
     name: dubbo
     port: -1

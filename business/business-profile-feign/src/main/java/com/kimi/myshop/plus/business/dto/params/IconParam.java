@@ -15,6 +15,8 @@ import java.io.Serializable;
 @Data
 public class IconParam implements Serializable {
 
+
+    private static final long serialVersionUID = 1798510854049898224L;
     private String username;
     private String path;
 }

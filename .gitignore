@@ -13,3 +13,8 @@ rebel.xml
 .classpath
 target/
 test/
+
+# Package Files #
+*.jar
+*.war
+*.ear

@@ -10,7 +10,6 @@ import org.apache.dubbo.config.annotation.Service;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.annotation.Resource;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -21,7 +20,7 @@ import java.util.Date;
  * @date 2020/11/21 12:32
  * @return
  */
-@Service(version = "1.0.0")
+@Service(version = "1.0.0",timeout = 5000)
 public class UmsAdminServiceImpl implements UmsAdminService {
 
 

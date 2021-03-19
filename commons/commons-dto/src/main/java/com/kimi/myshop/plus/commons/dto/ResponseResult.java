@@ -125,17 +125,7 @@ public class ResponseResult<T> implements Serializable {
         return true;
     }
 
-    /**
-     * 通用状态码
-     * <p>
-     * Description:
-     * </p>
-     *
-     * @author Lusifer
-     * @version v1.0.0
-     * @date 2019-07-30 05:02:49
-     * @see com.funtl.myshop.plus.commons.dto
-     */
+
     public static class CodeStatus {
         /**
          * 请求成功

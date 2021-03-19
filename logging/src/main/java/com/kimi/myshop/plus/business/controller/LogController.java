@@ -53,42 +53,41 @@ public class LogController {
     public ResponseResult<Object> query(LogQueryCriteria criteria, Pageable pageable){
         criteria.setLogType("INFO");
         return new ResponseResult<>(ResponseResult.CodeStatus.OK,logService.queryAll(criteria, pageable));
-//        return new ResponseEntity<>(logService.queryAll(criteria,pageable), HttpStatus.OK);
     }
 
     @GetMapping(value = "/user")
-    public ResponseEntity<Object> queryUserLog(LogQueryCriteria criteria, Pageable pageable){
+    public ResponseResult<Object> queryUserLog(LogQueryCriteria criteria, Pageable pageable){
         criteria.setLogType("INFO");
         criteria.setBlurry(SecurityUtils.getCurrentUsername());
-        return new ResponseEntity<>(logService.queryAllByUser(criteria,pageable), HttpStatus.OK);
+        return new ResponseResult<>(ResponseResult.CodeStatus.OK,logService.queryAllByUser(criteria,pageable));
     }
 
     @GetMapping(value = "/error")
     @PreAuthorize("hasAuthority('USER')")
-    public ResponseEntity<Object> queryErrorLog(LogQueryCriteria criteria, Pageable pageable){
+    public ResponseResult<Object> queryErrorLog(LogQueryCriteria criteria, Pageable pageable){
         criteria.setLogType("ERROR");
-        return new ResponseEntity<>(logService.queryAll(criteria,pageable), HttpStatus.OK);
+        return new ResponseResult<>(ResponseResult.CodeStatus.OK,logService.queryAll(criteria, pageable));
     }
 
     @GetMapping(value = "/error/{id}")
     @PreAuthorize("hasAuthority('USER')")
-    public ResponseEntity<Object> queryErrorLogs(@PathVariable Long id){
-        return new ResponseEntity<>(logService.findByErrDetail(id), HttpStatus.OK);
+    public ResponseResult<Object> queryErrorLogs(@PathVariable Long id){
+        return new ResponseResult<>(ResponseResult.CodeStatus.OK,logService.findByErrDetail(id));
     }
 
     @DeleteMapping(value = "/del/error")
     @Log("删除所有ERROR日志")
     @PreAuthorize("hasAuthority('USER')")
-    public ResponseEntity<Object> delAllErrorLog(){
+    public ResponseResult<Object> delAllErrorLog(){
         logService.delAllByError();
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseResult<>(ResponseResult.CodeStatus.OK);
     }
 
     @DeleteMapping(value = "/del/info")
     @Log("删除所有INFO日志")
     @PreAuthorize("hasAuthority('USER')")
-    public ResponseEntity<Object> delAllInfoLog(){
+    public ResponseResult<Object> delAllInfoLog(){
         logService.delAllByInfo();
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseResult<>(ResponseResult.CodeStatus.OK);
     }
 }

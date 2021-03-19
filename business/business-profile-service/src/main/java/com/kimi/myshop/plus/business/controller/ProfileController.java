@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "profile")
 public class ProfileController {
 
-    @Reference(version = "1.0.0")
+    @Reference(version = "1.0.0",timeout = 5000)
     private UmsAdminService umsAdminService;
 
     /**
@@ -47,6 +47,29 @@ public class ProfileController {
     }
 
     /**
+     * 更新头像
+     * @param iconParam 头像信息
+     * @return 返回成功与否
+     */
+    @PostMapping(value = "modify/icon")
+    @Log("修改头像")
+    public ResponseResult<Void> modifyIcon(@RequestBody IconParam iconParam){
+
+        int result = umsAdminService.modifyIcon(iconParam.getUsername(),iconParam.getPath());
+        // 成功
+        if (result>0){
+            return new ResponseResult<Void>(ResponseResult.CodeStatus.OK,"更新头像成功");
+        }
+        // 失败
+        else {
+            return new ResponseResult<Void>(ResponseResult.CodeStatus.FAIL,"更新头像失败");
+        }
+    }
+
+
+
+
+    /**
      *  更新个人信息
      *
      * @author 郭富城
@@ -57,6 +80,7 @@ public class ProfileController {
     @PostMapping(value = "update")
     @Log("更改个人信息")
     public ResponseResult<Void> update(@RequestBody ProfileParam profileParam){
+
         UmsAdmin umsAdmin=new UmsAdmin();
         BeanUtils.copyProperties(profileParam,umsAdmin);
         int result = umsAdminService.update(umsAdmin);
@@ -67,27 +91,6 @@ public class ProfileController {
         // 失败
         else {
             return new ResponseResult<Void>(ResponseResult.CodeStatus.FAIL,"更新个人信息失败");
-        }
-    }
-
-    /**
-     * 更新头像
-     * @param iconParam 头像信息
-     * @return 返回成功与否
-     */
-    @PostMapping(value = "modify/icon")
-    @Log("修改头像")
-    private ResponseResult<Void> modifyIcon(@RequestBody IconParam iconParam){
-
-
-        int result = umsAdminService.modifyIcon(iconParam.getUsername(),iconParam.getPath());
-        // 成功
-        if (result>0){
-            return new ResponseResult<Void>(ResponseResult.CodeStatus.OK,"更新头像成功");
-        }
-        // 失败
-        else {
-            return new ResponseResult<Void>(ResponseResult.CodeStatus.FAIL,"更新头像失败");
         }
     }
 }
