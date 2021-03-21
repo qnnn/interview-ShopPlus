@@ -88,7 +88,6 @@ public class LoginController {
         UserDetails userDetails = userDetailsService.loadUserByUsername(loginParam.getUsername());
         if (userDetails == null || !passwordEncoder.matches(loginParam.getPassword(), userDetails.getPassword())) {
             throw new BusinessException(BusinessStatus.ADMIN_PASSWORD);
-            //return new ResponseResult<Map<String, Object>>(ResponseResult.CodeStatus.FAIL, "账号或密码错误", null);
         }
 
         // 通过 HTTP 客户端请求登录接口

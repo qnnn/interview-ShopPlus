@@ -1,15 +1,20 @@
 package com.kimi.myshop.plus.provider.domain;
 
-import java.time.LocalDateTime;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -25,10 +30,11 @@ import javax.persistence.Table;
  * @author kimi
  * @since 2020-11-21
  */
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "ums_admin")
-public class UmsAdmin implements Serializable {
+public class User implements Serializable {
 
 
     private static final long serialVersionUID = 5409377087953191756L;
@@ -87,7 +93,36 @@ public class UmsAdmin implements Serializable {
     @Column(name = "`status`")
     private Integer status;
 
+    /**
+     * 连接role表
+     */
+    @ManyToMany(fetch = FetchType.EAGER,targetEntity = Role.class)
+    @JoinTable(name = "ums_users_roles",
+            joinColumns = {@JoinColumn(name = "user_id",referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")})
+    private Set<Role> roles;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        User user = (User) o;
+        return Objects.equals(id, user.id) &&
+                Objects.equals(username, user.username);
+    }
+
+    /**
+     * 重写hashcode防止死循环
+     * @return
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username);
+    }
 }
 
 

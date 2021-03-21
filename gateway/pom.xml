@@ -10,6 +10,7 @@
     </parent>
 
     <artifactId>gateway</artifactId>
+    <name>统一网关模块</name>
     <packaging>jar</packaging>
     <url>http://www.kimi.com</url>
 

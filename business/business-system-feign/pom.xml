@@ -5,14 +5,13 @@
 
     <parent>
         <groupId>com.kimi.shop.plus</groupId>
-        <artifactId>parent</artifactId>
+        <artifactId>business</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>commons</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>business-system-feign</artifactId>
+    <packaging>jar</packaging>
     <url>http://www.kimi.com</url>
-    <name>公共模块</name>
 
     <licenses>
         <license>
@@ -29,10 +28,4 @@
         </developer>
     </developers>
 
-
-    <modules>
-        <module>commons-dto</module>
-        <module>commons-utils</module>
-<!--        <module>commons-provider</module>-->
-    </modules>
 </project>

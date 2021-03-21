@@ -7,6 +7,7 @@
     <artifactId>dependencies</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
+    <name>统一依赖模块</name>
     <url>http://www.kimi.com</url>
 
     <properties>
@@ -14,6 +15,7 @@
         <okhttp3.version>4.1.0</okhttp3.version>
         <bitwalker.version>1.21</bitwalker.version>
         <feign-okhttp.version>10.3.0</feign-okhttp.version>
+        <mapstruct.version>1.3.1.Final</mapstruct.version>
 
         <!-- Native Cloud -->
         <dubbo.version>2.7.3</dubbo.version>
@@ -209,7 +211,27 @@
                 <artifactId>cos_api</artifactId>
                 <version>${tx-sdk-cos.version}</version>
             </dependency>
+
+
+            <!--mapStruct依赖-->
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.inject</groupId>
+                <artifactId>javax.inject</artifactId>
+                <version>1</version>
+            </dependency>
         </dependencies>
+
+
     </dependencyManagement>
 
     <repositories>

@@ -25,6 +25,14 @@ export function update(data) {
   })
 }
 
+export function modifyPassword(data) {
+  return request({
+    url: '/profile/modify/password',
+    method: 'post',
+    data
+  })
+}
+
 /**
  * 更新头像
  * @param data

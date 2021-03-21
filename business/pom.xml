@@ -12,6 +12,7 @@
     <artifactId>business</artifactId>
     <packaging>pom</packaging>
     <url>http://www.kimi.com</url>
+    <name>业务模块</name>
 
     <licenses>
         <license>
@@ -85,5 +86,7 @@
         <module>business-oauth2</module>
         <module>business-profile-feign</module>
         <module>business-profile-service</module>
+        <module>business-system-feign</module>
+        <module>business-system-service</module>
     </modules>
 </project>

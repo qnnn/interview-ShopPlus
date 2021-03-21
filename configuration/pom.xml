@@ -12,6 +12,7 @@
     <artifactId>configuration</artifactId>
     <packaging>pom</packaging>
     <url>http://www.kimi.com</url>
+    <name>配置模块</name>
 
     <licenses>
         <license>

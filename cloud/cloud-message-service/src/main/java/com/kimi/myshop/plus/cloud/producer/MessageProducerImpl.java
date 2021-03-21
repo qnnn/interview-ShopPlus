@@ -8,6 +8,9 @@ import org.springframework.messaging.support.MessageBuilder;
 
 import javax.annotation.Resource;
 
+/**
+ * @author 郭富城
+ */
 @Service(version = "1.0.0")
 public class MessageProducerImpl implements MessageProducer {
 

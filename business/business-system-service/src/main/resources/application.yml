@@ -1,0 +1,71 @@
+spring:
+  application:
+    name: business-system
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.229.150:3306/mplus_ums_admin?useUnicode=true&characterEncoding=utf-8&serverTimezone=Hongkong&useSSL=false
+    username: root
+    password: root
+    hikari:
+      minimum-idle: 5
+      idle-timeout: 600000
+      maximum-pool-size: 10
+      auto-commit: true
+      pool-name: MyHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.229.150:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8765
+      datasource:
+        ds:
+          nacos:
+            server-addr: 192.168.229.150:8848
+            data-id: Sentinel-Data
+            data-type: json
+            rule-type: flow
+
+
+
+security:
+  oauth2:
+    client:
+      client-id: client
+      client-secret: secret
+      access-token-uri: http://localhost:9001/oauth/token
+      user-authorization-uri: http://localhost:9001/oauth/authorize
+    resource:
+      token-info-uri: http://localhost:9001/oauth/check_token
+
+dubbo:
+  scan:
+    base-packages: com.kimi.myshop.plus.business.controller, com.kimi.myshop.plus.business.service
+  protocol:
+    name: dubbo
+    port: -1
+    serialization: kryo
+  registry:
+    address: nacos://192.168.229.150:8848
+    port: 80
+
+
+
+server:
+  # ${random.int[9000,9999]} 随机端口
+  port: 9003
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+

@@ -5,14 +5,13 @@
 
     <parent>
         <groupId>com.kimi.shop.plus</groupId>
-        <artifactId>parent</artifactId>
+        <artifactId>business</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>provider</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>business-system-service</artifactId>
+    <packaging>jar</packaging>
     <url>http://www.kimi.com</url>
-    <name>服务提供模块</name>
 
     <licenses>
         <license>
@@ -30,6 +29,33 @@
     </developers>
 
     <dependencies>
+        <!-- Spring Boot -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Spring Cloud -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-oauth2</artifactId>
+        </dependency>
+
+        <!-- Spring Cloud Alibaba -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+
         <!-- Apache Dubbo -->
         <dependency>
             <groupId>com.alibaba.nacos</groupId>
@@ -80,24 +106,58 @@
             <artifactId>spring-context-support</artifactId>
         </dependency>
 
-        <!-- lombok -->
+        <!-- Sentinel -->
+
+
+        <!-- DataSource -->
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+            <exclusions>
+                <!-- 排除 tomcat-jdbc 以使用 HikariCP -->
+                <exclusion>
+                    <groupId>org.apache.tomcat</groupId>
+                    <artifactId>tomcat-jdbc</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
-        <!--    project    -->
+        <!-- Projects -->
         <dependency>
             <groupId>com.kimi.shop.plus</groupId>
-            <artifactId>configuration-sentinel</artifactId>
+            <artifactId>business-system-feign</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.kimi.shop.plus</groupId>
+            <artifactId>provider-admin-api</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.kimi.shop.plus</groupId>
+            <artifactId>logging</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
     </dependencies>
 
-    <modules>
-        <module>provider-admin-api</module>
-        <module>provider-admin-service</module>
-        <module>provider-admin-login-log-api</module>
-        <module>provider-admin-login-log-service</module>
-    </modules>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.kimi.myshop.plus.business.SystemApplication</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
