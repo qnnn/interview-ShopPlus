@@ -33,6 +33,13 @@ public interface UmsAdminService {
     UmsAdmin get(String username);
 
     /**
+     * 通过邮箱获取用户
+     * @param email 邮箱
+     * @return 返回用户
+     */
+    UmsAdmin getByEmail(String email);
+
+    /**
      *  获取用户
      *
      * @author 郭富城

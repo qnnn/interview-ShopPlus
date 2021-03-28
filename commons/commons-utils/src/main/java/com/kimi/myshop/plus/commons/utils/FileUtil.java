@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -224,7 +225,7 @@ public class FileUtil extends cn.hutool.core.io.FileUtil {
     /**
      * 自适应宽度(中文支持)
      */
-    private static void sizeChineseColumn(SXSSFSheet sheet, BigExcelWriter writer) {
+    public static void sizeChineseColumn(SXSSFSheet sheet, BigExcelWriter writer) {
         for (int columnNum = 0; columnNum < writer.getColumnCount(); columnNum++) {
             int columnWidth = sheet.getColumnWidth(columnNum) / 256;
             for (int rowNum = 0; rowNum < sheet.getLastRowNum(); rowNum++) {

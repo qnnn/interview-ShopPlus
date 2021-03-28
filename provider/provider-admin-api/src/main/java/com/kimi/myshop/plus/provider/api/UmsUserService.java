@@ -1,11 +1,14 @@
 package com.kimi.myshop.plus.provider.api;
 
 
+import com.kimi.myshop.plus.provider.domain.User;
 import com.kimi.myshop.plus.provider.dto.UserDto;
 import com.kimi.myshop.plus.provider.dto.UserQueryCriteria;
 import org.springframework.data.domain.Pageable;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -27,4 +30,17 @@ public interface UmsUserService {
      * @return /
      */
     List<UserDto> selectAll(UserQueryCriteria criteria);
+
+    /**
+     * 创建或更新用户
+     * @param user 用户
+     */
+    void save(User user);
+
+    /**
+     * 根据id删除多条数据
+     * @param ids ids
+     * @return 返回1表示成功
+     */
+    int deleteMulti(Set<Long> ids);
 }

@@ -28,4 +28,11 @@
         </developer>
     </developers>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.kimi.shop.plus</groupId>
+            <artifactId>provider-admin-api</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+    </dependencies>
 </project>

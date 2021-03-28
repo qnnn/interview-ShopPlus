@@ -48,6 +48,14 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     }
 
     @Override
+    public UmsAdmin getByEmail(String email) {
+        QueryWrapper<UmsAdmin> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("email", email);
+        return umsAdminMapper.selectOne(queryWrapper);
+    }
+
+
+    @Override
     public UmsAdmin get(UmsAdmin umsAdmin) {
         QueryWrapper<UmsAdmin> queryWrapper = new QueryWrapper<>();
         queryWrapper.equals(umsAdmin);

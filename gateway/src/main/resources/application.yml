@@ -53,7 +53,7 @@ spring:
           predicates:
             - Path=/api/system/**
           filters:
-            - StripPrefix=2
+            - StripPrefix=1
 
 
 

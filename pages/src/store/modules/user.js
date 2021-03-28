@@ -6,6 +6,7 @@ const getDefaultState = () => {
   return {
     token: getToken(),
     name: '',
+    user: {},
     avatar: ''
   }
 }
@@ -28,6 +29,9 @@ const mutations = {
   },
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
+  },
+  SET_USER: (state, user) => {
+    state.user = user
   }
 }
 
@@ -58,13 +62,14 @@ const actions = {
         const { data } = response
 
         if (!data) {
-          return reject('Verification failed, please Login again.')
+          return reject('无效验证，请重新登录！')
         }
 
         const { name, avatar } = data
 
         commit('SET_NAME', name)
         commit('SET_AVATAR', avatar)
+        commit('SET_USER',data)
         resolve(data)
       }).catch(error => {
         reject(error)

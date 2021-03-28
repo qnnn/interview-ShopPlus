@@ -3,6 +3,7 @@ package com.kimi.myshop.plus.provider.domain;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,25 +37,32 @@ public class Menu implements Serializable {
     /**
      * 父级菜单
      */
+    @Column(name = "pid")
     private Long pid;
 
     /**
      * 菜单名称
      */
+    @Column(name = "name")
     private String name;
 
-
+    @Column(name = "value")
     private String value;
 
     /**
      * 菜单图标
      */
+    @Column(name = "icon")
     private String icon;
 
-
+    @Column(name = "type")
     private Integer type;
 
+    @Column(name = "uri")
     private String uri;
+
+    @Column(columnDefinition = "bit(1) default 0")
+    private Boolean isParent;
 
     /**
      * 连接 role 表
@@ -66,6 +74,7 @@ public class Menu implements Serializable {
     /**
      * 菜单状态
      */
+    @Column(name = "status")
     private Integer status;
 
     /**
@@ -75,6 +84,7 @@ public class Menu implements Serializable {
     @Column(name = "create_time")
     private Date createTime;
 
+    @Column(name = "sort")
     private Integer sort;
 
     @Override

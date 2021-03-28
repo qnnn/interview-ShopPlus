@@ -1,5 +1,5 @@
-import { initData, download } from '@/api/data'
-import { parseTime } from '@/utils/index'
+import {initData, download, exportFile} from '@/api/data'
+import { parseTime,downloadFile } from '@/utils'
 import Vue from 'vue'
 
 /**
@@ -137,7 +137,7 @@ function CRUD(options) {
             table.store.states.treeData = {}
             table.store.states.lazyTreeNodeMap = {}
           }
-          crud.page.total = data.totalElements
+          crud.page.total = data.data.totalElements
           crud.data = data.data.content
           crud.resetDataStatus()
           // time 毫秒后显示表格
@@ -335,7 +335,7 @@ function CRUD(options) {
       }).catch(() => {
         crud.downloadLoading = false
       })
-    },
+      },
     /**
      * 获取查询参数
      */

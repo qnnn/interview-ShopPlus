@@ -109,6 +109,9 @@ public class LoginController {
         sendAdminLoginLog(loginParam.getUsername(),request);
         // 更新登录时间
         umsAdminService.updateLoginTime(loginParam.getUsername());
+        if (umsAdminService.get(loginParam.getUsername()).getStatus()==0){
+            return new ResponseResult<>(ResponseResult.CodeStatus.FAIL,"该账号已被冻结！请联系管理员");
+        }
 
         return new ResponseResult<Map<String, Object>>(ResponseResult.CodeStatus.OK, "登录成功", result);
     }

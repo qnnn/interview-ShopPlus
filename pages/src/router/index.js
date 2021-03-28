@@ -81,6 +81,34 @@ export const constantRoutes = [
   },
 
   {
+    path: '/system',
+    component: Layout,
+    redirect: '/system/user',
+    name: 'UserControl',
+    meta: { title: '用户管理', icon: 'user' },
+    children: [
+      {
+        path: 'user',
+        name: 'UserInfo',
+        component: () => import('@/views/system/user/index'),
+        meta: { title: '用户列表', icon: 'table' }
+      },
+      {
+        path: 'role',
+        name: 'RoleInfo',
+        component: () => import('@/views/system/role/index'),
+        meta: { title: '角色管理', icon: 'tree' }
+      },
+      {
+        path: 'menu',
+        name: 'MenuIfo',
+        component: () => import('@/views/system/menu/index'),
+        meta: {title: '菜单管理',icon: 'tree'}
+      }
+    ]
+  },
+
+  {
     path: '/logs',
     component: Layout,
     redirect: '/logs/user',

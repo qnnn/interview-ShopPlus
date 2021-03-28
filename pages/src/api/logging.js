@@ -6,7 +6,7 @@ import request from '@/utils/request'
  * @returns {AxiosPromise}
  * @param id
  */
-export function user(id) {
+export function userLog(id) {
   return request({
     url: '/logs/user/' + id,
     method: 'get'

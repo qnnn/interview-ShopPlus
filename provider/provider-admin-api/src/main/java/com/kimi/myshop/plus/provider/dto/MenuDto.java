@@ -54,6 +54,8 @@ public class MenuDto implements Serializable {
 
     private String uri;
 
+    private Boolean isParent;
+
     private List<MenuDto> children;
 
     private Integer status;
@@ -61,6 +63,27 @@ public class MenuDto implements Serializable {
     private Date createTime;
 
     private Integer sort;
+
+    /**
+     * 返回前端，树形菜单TreeSelect得到子标签
+     */
+    public String getLabel() {
+        return name;
+    }
+
+    /**
+     * 树形菜单所需
+     */
+    public Boolean getHasChildren() {
+        return isParent;
+    }
+
+    /**
+     *  树形菜单所需
+     */
+    public Boolean getLeaf(){
+        return isParent;
+    }
 
     @Override
     public boolean equals(Object o) {
