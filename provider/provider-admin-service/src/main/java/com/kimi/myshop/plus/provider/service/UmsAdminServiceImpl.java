@@ -41,7 +41,6 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     @Override
     @SentinelResource(value = "getByUsername",fallback = "getByUsernameFallback", fallbackClass = UmsAdminServiceFallback.class)
     public UmsAdmin get(String username) {
-
         QueryWrapper<UmsAdmin> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("username", username);
         return umsAdminMapper.selectOne(queryWrapper);
