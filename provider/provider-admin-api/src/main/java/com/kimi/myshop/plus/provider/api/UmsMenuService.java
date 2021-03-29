@@ -18,17 +18,22 @@ public interface UmsMenuService {
     /**
      * 查询全部
      * @param criteria 条件
-     * @param pageable 分页参数
      * @return /
      */
     Object selectAll(MenuQueryCriteria criteria) throws IllegalAccessException;
 
 
     /**
-     * 创建或更新用户.
+     * 创建菜单.
      * @param menu 菜单
      */
-    void save(Menu menu);
+    void create(Menu menu);
+
+    /**
+     *  更新菜单
+     * @param menu 菜单
+     */
+    void update(Menu menu);
 
     /**
      * 根据id删除多条数据
@@ -38,8 +43,8 @@ public interface UmsMenuService {
 
     /**
      *  通过id获取用户
-     * @param id
-     * @return
+     * @param id id
+     * @return MenuDto
      */
     MenuDto findById(Long id);
 

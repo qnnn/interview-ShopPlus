@@ -1,9 +1,10 @@
 package com.kimi.myshop.plus.provider.repository;
 
 import com.kimi.myshop.plus.provider.domain.Menu;
-import com.kimi.myshop.plus.provider.domain.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,14 +17,37 @@ public interface UmsMenuRepository extends JpaRepository<Menu,Long>, JpaSpecific
 
     /**
      * 获取父级id相同的菜单数据
-     * @param pid
-     * @return
+     * @param pid 父级id
+     * @return List<Menu>
      */
     List<Menu> findByPid(Long pid);
 
     /**
      * 获取父级id为空的所有菜单数据
-     * @return
+     * @return List<Menu>
      */
     List<Menu> findByPidIsNull();
+
+    /**
+     *  通过标题查找
+     * @param name 标题
+     * @return Menu
+     */
+    Menu findByName(String name);
+
+    /**
+     *  通过路径查找
+     * @param uri 路径
+     * @return Menu
+     */
+    Menu findByUri(String uri);
+
+    /**
+     *  删除角色的对应菜单
+     * @param id 菜单id
+     */
+    @Modifying
+    @Query(value = "delete from ums_roles_menus WHERE menu_id = :id",nativeQuery = true)
+    void deleteRoleMap(Long id);
+
 }

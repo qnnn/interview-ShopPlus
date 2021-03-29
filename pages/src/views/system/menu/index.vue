@@ -27,9 +27,8 @@
           <el-form ref="form" :inline="true" :model="form" :rules="rules" size="small" label-width="80px">
             <el-form-item label="菜单类型" prop="type">
               <el-radio-group v-model="form.type" size="mini" style="width: 178px">
-                <el-radio-button label="0">目录</el-radio-button>
-                <el-radio-button label="1">菜单</el-radio-button>
-                <el-radio-button label="2">按钮</el-radio-button>
+                <el-radio-button label="0">本地</el-radio-button>
+                <el-radio-button label="1">外链</el-radio-button>
               </el-radio-group>
             </el-form-item>
             <el-form-item label="菜单图标" prop="icon">
@@ -151,6 +150,7 @@
   let userRoles = []
   const defaultForm = {
     id: null,
+    status: 0,
     name: null,
     sort: 999,
     uri: null,
@@ -191,7 +191,7 @@
       ])
     },
     created() {
-      this.crud.msg.add = '新增成功，默认密码：123456'
+      this.crud.msg.add = '新增成功菜单成功!'
     },
     mounted: function () {
       const that = this
@@ -207,7 +207,6 @@
           if (form.pid === null) {
             form.pid = 0
           }
-          console.log(form.pid)
           this.getSupDepts(form.id)
         } else {
           this.menus.push({id: 0, label: '顶级类目', children: null})
@@ -215,7 +214,7 @@
       },
       // 改变状态
       changeEnabled(data) {
-        this.$confirm('此操作将' + (data.status === 0 ? '激活菜单' : '冻结菜单') + data.username + ', 是否继续？', '提示', {
+        this.$confirm('此操作将' + (data.status === 0 ? '激活菜单' : '冻结菜单') + data.name + ', 是否继续？', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
@@ -233,7 +232,6 @@
 
       getMenus(tree, treeNode, resolve) {
 
-        console.log("生效")
         const params = {pid: tree.id}
         setTimeout(() => {
           crudMenu.getMenus(params).then(res => {
@@ -249,7 +247,6 @@
             }
             return obj
           })
-          console.log(children)
           this.menus = [{id: 0, label: '顶级类目', children: children}]
         })
       },

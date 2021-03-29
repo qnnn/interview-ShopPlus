@@ -83,22 +83,22 @@ public class MenuController {
     @Log("新增菜单")
     @PostMapping("/add")
     public ResponseResult<Object> create(@RequestBody Menu menu) {
-
-        return null;
+        umsMenuService.create(menu);
+        return new ResponseResult<>(ResponseResult.CodeStatus.OK,"新增菜单成功！");
     }
 
     @Log("修改菜单")
     @PostMapping("/edit")
     public ResponseResult<Object> update(@RequestBody Menu menu) {
-
-        return null;
+        umsMenuService.update(menu);
+        return new ResponseResult<>(ResponseResult.CodeStatus.OK,"修改菜单成功！");
     }
 
-    @Log("删除用户")
+    @Log("删除菜单")
     @PostMapping("/delete")
     public ResponseResult<Object> delete(@RequestBody Set<Long> ids) {
         umsMenuService.deleteMulti(ids);
-        return new ResponseResult<>(ResponseResult.CodeStatus.OK, "删除用户成功");
+        return new ResponseResult<>(ResponseResult.CodeStatus.OK, "删除菜单成功");
     }
 
 
