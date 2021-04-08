@@ -89,6 +89,7 @@ public class LoginController {
         if (userDetails == null || !passwordEncoder.matches(loginParam.getPassword(), userDetails.getPassword())) {
             throw new BusinessException(BusinessStatus.ADMIN_PASSWORD);
         }
+        UmsAdmin umsAdmin = umsAdminService.get(loginParam.getUsername());
 
         // 通过 HTTP 客户端请求登录接口
         Map<String, String> params = Maps.newHashMap();
@@ -103,6 +104,7 @@ public class LoginController {
             Map<String, Object> jsonMap = MapperUtils.json2map(jsonString);
             String token = String.valueOf(jsonMap.get("access_token"));
             result.put("token", token);
+            result.put("id",umsAdmin.getId());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -130,6 +132,7 @@ public class LoginController {
         }
 
         LoginInfo loginInfo = new LoginInfo();
+        loginInfo.setId(umsAdmin.getId());
         loginInfo.setName(umsAdmin.getUsername());
         loginInfo.setAvatar(umsAdmin.getIcon());
         return new ResponseResult<LoginInfo>(ResponseResult.CodeStatus.OK, "获取用户信息", loginInfo);

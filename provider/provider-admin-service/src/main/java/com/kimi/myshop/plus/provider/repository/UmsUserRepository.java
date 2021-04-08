@@ -32,4 +32,11 @@ public interface UmsUserRepository extends JpaRepository<User, Long>, JpaSpecifi
     @Modifying
     @Query(value = "delete from ums_users_roles WHERE user_id in (:ids)",nativeQuery = true)
     void deleteMultiRoleMap(Set<Long> ids);
+
+    /**
+     * 通过用户名查找角色
+     * @param username 用户名
+     * @return 用户
+     */
+    User findByUsername(String username);
 }

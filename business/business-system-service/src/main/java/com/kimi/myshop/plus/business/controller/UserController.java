@@ -26,6 +26,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -73,6 +74,11 @@ public class UserController {
     @GetMapping
     public ResponseResult<Object> query(UserQueryCriteria criteria, Pageable pageable) {
         return new ResponseResult<>(ResponseResult.CodeStatus.OK, umsUserService.selectAll(criteria, pageable));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseResult<Object> query(@PathVariable Long id){
+        return new ResponseResult<>(ResponseResult.CodeStatus.OK,umsUserService.findById(id));
     }
 
     @Log("新增用户")

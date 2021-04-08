@@ -25,6 +25,13 @@ public interface UmsUserService {
     Object selectAll(UserQueryCriteria criteria, Pageable pageable);
 
     /**
+     * 通过ID查找用户
+     * @param id id
+     * @return 用户Dto
+     */
+    UserDto findById(Long id);
+
+    /**
      * 查询全部不分页
      * @param criteria 条件
      * @return /
@@ -43,4 +50,11 @@ public interface UmsUserService {
      * @return 返回1表示成功
      */
     int deleteMulti(Set<Long> ids);
+
+    /**
+     * 通过用户名查找用户
+     * @param username
+     * @return
+     */
+    User findByUsername(String username);
 }

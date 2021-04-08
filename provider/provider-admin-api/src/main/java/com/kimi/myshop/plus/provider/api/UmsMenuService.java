@@ -5,6 +5,7 @@ import com.kimi.myshop.plus.provider.domain.User;
 import com.kimi.myshop.plus.provider.dto.MenuDto;
 import com.kimi.myshop.plus.provider.dto.MenuQueryCriteria;
 import com.kimi.myshop.plus.provider.dto.RoleDto;
+import com.kimi.myshop.plus.provider.vo.MenuVo;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -21,6 +22,13 @@ public interface UmsMenuService {
      * @return /
      */
     Object selectAll(MenuQueryCriteria criteria) throws IllegalAccessException;
+
+    /**
+     * 查找当前用户
+     * @param currentUsername 当前用户名称
+     * @return 当前用户所拥有的菜单权限
+     */
+    List<MenuDto> findByUser(String currentUsername);
 
 
     /**
@@ -66,8 +74,15 @@ public interface UmsMenuService {
 
     /**
      *  获取菜单
-     * @param pid
-     * @return
+     * @param pid 父级id
+     * @return Menu传输对象
      */
     List<MenuDto> getMenus(Long pid);
+
+    /**
+     * 构建前端菜单
+     * @param menuDtos Menu传输对象
+     * @return 视图实体·
+     */
+    List<MenuVo> buildMenus(List<MenuDto> menuDtos);
 }

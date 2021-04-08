@@ -49,6 +49,12 @@ public class Menu implements Serializable {
     @Column(name = "value")
     private String value;
 
+    @Column(name = "router_name")
+    private String routerName;
+
+    @Column(columnDefinition = "bit(1) default 0")
+    private Boolean externalLink;
+
     /**
      * 菜单图标
      */

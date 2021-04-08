@@ -7,6 +7,7 @@ import com.alibaba.fastjson.JSON;
 import com.kimi.myshop.plus.business.annotation.Log;
 import com.kimi.myshop.plus.business.dto.excel.UserExcel;
 import com.kimi.myshop.plus.commons.dto.ResponseResult;
+import com.kimi.myshop.plus.commons.utils.SecurityUtils;
 import com.kimi.myshop.plus.provider.api.UmsMenuService;
 import com.kimi.myshop.plus.provider.domain.Menu;
 import com.kimi.myshop.plus.provider.domain.UmsAdmin;
@@ -19,6 +20,7 @@ import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -99,6 +101,17 @@ public class MenuController {
     public ResponseResult<Object> delete(@RequestBody Set<Long> ids) {
         umsMenuService.deleteMulti(ids);
         return new ResponseResult<>(ResponseResult.CodeStatus.OK, "删除菜单成功");
+    }
+
+    /**
+     * 前端获取路由菜单
+     * @return 路由菜单
+     */
+    @GetMapping(value = "/build")
+    public ResponseResult<Object> buildMenu(){
+        List<MenuDto> menuDtos = umsMenuService.findByUser(SecurityUtils.getCurrentUsername());
+        List<MenuDto> tree = umsMenuService.getTree(menuDtos);
+        return new ResponseResult<>(ResponseResult.CodeStatus.OK,umsMenuService.buildMenus(tree));
     }
 
 

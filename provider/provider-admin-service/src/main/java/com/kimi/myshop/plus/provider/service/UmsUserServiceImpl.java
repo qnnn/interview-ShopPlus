@@ -46,6 +46,12 @@ public class UmsUserServiceImpl implements UmsUserService {
     }
 
     @Override
+    public UserDto findById(Long id) {
+        User user = umsUserRepository.findById(id).orElseGet(User::new);
+        return umsUserMapper.toDto(user);
+    }
+
+    @Override
     public List<UserDto> selectAll(UserQueryCriteria criteria) {
         // 不分页查询
         List<User> umsAdmins = umsUserRepository.findAll((root, criteriaQuery, criteriaBuilder) -> QueryHelp.getPredicate(root,criteria,criteriaBuilder));
@@ -63,6 +69,11 @@ public class UmsUserServiceImpl implements UmsUserService {
     public int deleteMulti(Set<Long> ids) {
         umsUserRepository.deleteMultiRoleMap(ids);
         return umsUserRepository.deleteMulti(ids);
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        return umsUserRepository.findByUsername(username);
     }
 
 

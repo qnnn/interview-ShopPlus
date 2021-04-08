@@ -26,7 +26,7 @@
                    :visible.sync="crud.status.cu > 0" :title="crud.status.title" width="580px">
           <el-form ref="form" :inline="true" :model="form" :rules="rules" size="small" label-width="80px">
             <el-form-item label="菜单类型" prop="type">
-              <el-radio-group v-model="form.type" size="mini" style="width: 178px">
+              <el-radio-group v-model="form.externalLink" size="mini" style="width: 178px">
                 <el-radio-button label="0">本地</el-radio-button>
                 <el-radio-button label="1">外链</el-radio-button>
               </el-radio-group>
@@ -47,13 +47,19 @@
               </el-popover>
             </el-form-item>
             <el-form-item label="启用" prop="status">
-              <el-radio-group v-model="form.status" :disabled="form.name==='菜单管理'">
+              <el-radio-group v-model="form.status" :disabled="form.name==='菜单列表'">
                 <el-radio :label="0">禁用</el-radio>
                 <el-radio :label="1">启用</el-radio>
               </el-radio-group>
             </el-form-item>
             <el-form-item label="菜单标题" prop="name">
               <el-input v-model="form.name" placeholder="菜单标题"/>
+            </el-form-item>
+            <el-form-item label="组件路径" prop="value">
+              <el-input v-model="form.value" placeholder="组件路径" style="width: 178px;"/>
+            </el-form-item>
+            <el-form-item label="组件名称" prop="value">
+              <el-input v-model="form.routerName" placeholder="组件名称" style="width: 178px;"/>
             </el-form-item>
             <el-form-item label="路由地址" prop="uri">
               <el-input v-model="form.uri" placeholder="路由地址" style="width: 178px;"/>
@@ -92,7 +98,7 @@
         >
           <el-table-column type="selection" width="55"/>
           <el-input v-model="form.id" type="hidden" :disabled="true"/>
-          <el-table-column :show-overflow-tooltip="true" label="菜单标题" width="125px" prop="name"/>
+          <el-table-column :show-overflow-tooltip="true" label="菜单标题" prop="name"/>
           <el-table-column prop="icon" label="图标" align="center" width="60px">
             <template slot-scope="scope">
               <svg-icon :icon-class="scope.row.icon ? scope.row.icon : ''"/>
@@ -108,6 +114,7 @@
             <template slot-scope="scope">
               <el-switch
                 v-model="scope.row.status===1"
+                :disabled="scope.row.name==='菜单列表'"
                 active-color="#13ce66"
                 inactive-color="#F56C6C"
                 @change="changeEnabled(scope.row)"

@@ -33,7 +33,7 @@ export function del(ids) {
 
 export function edit(data) {
   return request({
-    url: '/system/role/update',
+    url: '/system/role/edit',
     method: 'post',
     data
   })

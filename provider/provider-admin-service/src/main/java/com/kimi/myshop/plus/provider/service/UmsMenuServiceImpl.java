@@ -1,16 +1,20 @@
 package com.kimi.myshop.plus.provider.service;
 
 import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
 import com.kimi.myshop.plus.business.BadRequestException;
 import com.kimi.myshop.plus.commons.utils.PageUtil;
 import com.kimi.myshop.plus.commons.utils.QueryHelp;
-import com.kimi.myshop.plus.commons.utils.StringUtils;
 import com.kimi.myshop.plus.provider.api.UmsMenuService;
+import com.kimi.myshop.plus.provider.api.UmsRoleService;
 import com.kimi.myshop.plus.provider.domain.Menu;
 import com.kimi.myshop.plus.provider.dto.MenuDto;
 import com.kimi.myshop.plus.provider.dto.MenuQueryCriteria;
+import com.kimi.myshop.plus.provider.dto.RoleDto;
 import com.kimi.myshop.plus.provider.mapStruct.MenuMapper;
 import com.kimi.myshop.plus.provider.repository.UmsMenuRepository;
+import com.kimi.myshop.plus.provider.vo.MenuMetaVo;
+import com.kimi.myshop.plus.provider.vo.MenuVo;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +24,8 @@ import javax.persistence.EntityExistsException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -33,6 +39,9 @@ import java.util.stream.Collectors;
 public class UmsMenuServiceImpl implements UmsMenuService {
     @Resource
     UmsMenuRepository umsMenuRepository;
+
+    @Resource
+    UmsRoleService roleService;
 
     @Resource
     MenuMapper menuMapper;
@@ -59,6 +68,14 @@ public class UmsMenuServiceImpl implements UmsMenuService {
         List<Menu> result = umsMenuRepository.findAll((root, criteriaQuery, criteriaBuilder) -> QueryHelp.getPredicate(root, criteria, criteriaBuilder), Sort.by(Sort.Direction.ASC, "sort"));
         List<MenuDto> menuDtos = menuMapper.toDto(result);
         return PageUtil.toPage(menuDtos, menuDtos.size());
+    }
+
+    @Override
+    public List<MenuDto> findByUser(String currentUsername) {
+        List<RoleDto> roles = roleService.findByUsersName(currentUsername);
+        Set<Long> roleIds = roles.stream().map(RoleDto::getId).collect(Collectors.toSet());
+        LinkedHashSet<Menu> menus = umsMenuRepository.findByRoleIds(roleIds);
+        return menus.stream().map(menuMapper::toDto).collect(Collectors.toList());
     }
 
 
@@ -235,6 +252,58 @@ public class UmsMenuServiceImpl implements UmsMenuService {
             menus = umsMenuRepository.findByPidIsNull();
         }
         return menuMapper.toDto(menus);
+    }
+
+    @Override
+    public List<MenuVo> buildMenus(List<MenuDto> menuDtos) {
+        List<MenuVo> list = new LinkedList<>();
+        menuDtos.forEach(menuDTO -> {
+                    if (menuDTO!=null){
+                        List<MenuDto> menuDtoList = menuDTO.getChildren();
+                        MenuVo menuVo = new MenuVo();
+                        menuVo.setName(ObjectUtil.isNotEmpty(menuDTO.getRouterName())  ? menuDTO.getRouterName() : menuDTO.getName());
+                        // 一级目录需要加斜杠，不然会报警告
+                        menuVo.setPath(menuDTO.getPid() == null ? "/" + menuDTO.getUri() :menuDTO.getUri());
+                        menuVo.setHidden(menuDTO.getStatus().equals(0));
+                        // 非外链
+                        if (!menuDTO.getExternalLink()){
+                            if(menuDTO.getPid() == null){
+                                menuVo.setComponent(StrUtil.isEmpty(menuDTO.getValue())?"Layout":menuDTO.getValue());
+                            }else if(!StrUtil.isEmpty(menuDTO.getValue())){
+                                menuVo.setComponent(menuDTO.getValue());
+                            }
+                        }
+
+                        menuVo.setMeta(new MenuMetaVo(menuDTO.getName(),menuDTO.getIcon()));
+                        if(menuDtoList !=null && menuDtoList.size()!=0){
+                            menuVo.setAlwaysShow(true);
+                            menuVo.setRedirect("noredirect");
+                            menuVo.setChildren(buildMenus(menuDtoList));
+                            // 处理是一级菜单并且没有子菜单的情况
+                        }
+                        else if(menuDTO.getPid() == null){
+                            MenuVo menuVo1 = new MenuVo();
+                            menuVo1.setMeta(menuVo.getMeta());
+                            // 非外链
+                            if(!menuDTO.getExternalLink()){
+                                menuVo1.setPath("index");
+                                menuVo1.setName(menuVo.getName());
+                                menuVo1.setComponent(menuVo.getComponent());
+                            } else {
+                                menuVo1.setPath(menuDTO.getUri());
+                            }
+                            menuVo.setName(null);
+                            menuVo.setMeta(null);
+                            menuVo.setComponent("Layout");
+                            List<MenuVo> list1 = new ArrayList<>();
+                            list1.add(menuVo1);
+                            menuVo.setChildren(list1);
+                        }
+                        list.add(menuVo);
+                    }
+                }
+        );
+        return list;
     }
 
 

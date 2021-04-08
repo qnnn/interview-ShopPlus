@@ -7,6 +7,13 @@ export function getAll() {
   })
 }
 
+export function getById(id) {
+  return request({
+    url: '/system/user/' + id,
+    method: 'get'
+  })
+}
+
 export function add(data) {
   return request({
     url: '/system/user/add',
@@ -31,4 +38,4 @@ export function edit(data) {
   })
 }
 
-export default { add, edit, del }
+export default {getById, add, edit, del}

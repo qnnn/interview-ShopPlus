@@ -48,6 +48,10 @@ public class MenuDto implements Serializable {
 
     private String value;
 
+    private String routerName;
+
+    private Boolean externalLink;
+
     private String icon;
 
     private Integer type;
@@ -82,7 +86,7 @@ public class MenuDto implements Serializable {
      *  树形菜单所需
      */
     public Boolean getLeaf(){
-        return isParent;
+        return !isParent;
     }
 
     @Override
