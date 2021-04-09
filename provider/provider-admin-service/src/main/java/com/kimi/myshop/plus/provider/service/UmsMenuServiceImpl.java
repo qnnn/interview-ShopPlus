@@ -23,6 +23,7 @@ import javax.annotation.Resource;
 import javax.persistence.EntityExistsException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
@@ -259,6 +260,7 @@ public class UmsMenuServiceImpl implements UmsMenuService {
         List<MenuVo> list = new LinkedList<>();
         menuDtos.forEach(menuDTO -> {
                     if (menuDTO!=null){
+                        // 子菜单
                         List<MenuDto> menuDtoList = menuDTO.getChildren();
                         MenuVo menuVo = new MenuVo();
                         menuVo.setName(ObjectUtil.isNotEmpty(menuDTO.getRouterName())  ? menuDTO.getRouterName() : menuDTO.getName());
@@ -278,9 +280,10 @@ public class UmsMenuServiceImpl implements UmsMenuService {
                         if(menuDtoList !=null && menuDtoList.size()!=0){
                             menuVo.setAlwaysShow(true);
                             menuVo.setRedirect("noredirect");
+                            // 子菜单不为空
                             menuVo.setChildren(buildMenus(menuDtoList));
-                            // 处理是一级菜单并且没有子菜单的情况
                         }
+                        // 处理是一级菜单并且没有子菜单的情况
                         else if(menuDTO.getPid() == null){
                             MenuVo menuVo1 = new MenuVo();
                             menuVo1.setMeta(menuVo.getMeta());
@@ -299,10 +302,12 @@ public class UmsMenuServiceImpl implements UmsMenuService {
                             list1.add(menuVo1);
                             menuVo.setChildren(list1);
                         }
+                        menuVo.setSort(menuDTO.getSort());
                         list.add(menuVo);
                     }
                 }
         );
+        list.sort(Comparator.comparing(MenuVo::getSort));
         return list;
     }
 

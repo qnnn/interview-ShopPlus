@@ -29,4 +29,6 @@ public class MenuVo implements Serializable {
     private MenuMetaVo meta;
 
     private List<MenuVo> children;
+
+    private Integer sort;
 }

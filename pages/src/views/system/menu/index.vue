@@ -25,10 +25,10 @@
         <el-dialog append-to-body :close-on-click-modal="false" :before-close="crud.cancelCU"
                    :visible.sync="crud.status.cu > 0" :title="crud.status.title" width="580px">
           <el-form ref="form" :inline="true" :model="form" :rules="rules" size="small" label-width="80px">
-            <el-form-item label="菜单类型" prop="type">
+            <el-form-item label="菜单类型" prop="externalLink">
               <el-radio-group v-model="form.externalLink" size="mini" style="width: 178px">
-                <el-radio-button label="0">本地</el-radio-button>
-                <el-radio-button label="1">外链</el-radio-button>
+                <el-radio-button label="false">本地</el-radio-button>
+                <el-radio-button label="true">外链</el-radio-button>
               </el-radio-group>
             </el-form-item>
             <el-form-item label="菜单图标" prop="icon">
@@ -55,7 +55,7 @@
             <el-form-item label="菜单标题" prop="name">
               <el-input v-model="form.name" placeholder="菜单标题"/>
             </el-form-item>
-            <el-form-item label="组件路径" prop="value">
+            <el-form-item label="组件路径" v-show="form.externalLink.toString()!=='true'" prop="value">
               <el-input v-model="form.value" placeholder="组件路径" style="width: 178px;"/>
             </el-form-item>
             <el-form-item label="组件名称" prop="value">
@@ -157,6 +157,7 @@
   let userRoles = []
   const defaultForm = {
     id: null,
+    externalLink: false,
     status: 0,
     name: null,
     sort: 999,
