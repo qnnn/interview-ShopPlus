@@ -198,7 +198,7 @@ networks:
 # 一些功能展示
 > 若不显示，请点击
 ### 动态路由
-![动态路由](https://github.com/qnnn/kimiAdmin/tree/main/example/gif/动态路由.gif)
+![动态路由](https://github.com/qnnn/kimiAdmin/blob/main/example/gif/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1.gif?raw=true)
 
 ### RBAC角色管理
 ![RBAC](https://github.com/qnnn/kimiAdmin/tree/main/example/gif/RBAC角色管理.gif)
