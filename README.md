@@ -195,8 +195,21 @@ networks:
 ```
 > 只是简单试验，所以只写了一个规则
 
+# 一些功能展示
+### 动态路由
+![动态路由](https://github.com/qnnn/kimiAdmin/tree/main/example/gif/动态路由.gif)
 
+### RBAC角色管理
+![RBAC](https://github.com/qnnn/kimiAdmin/tree/main/example/gif/RBAC角色管理.gif)
 
+### Sentinel限流
+![限流](https://github.com/qnnn/kimiAdmin/tree/main/example/gif/限流.gif)
 
+### COS存储桶
+![COS](https://github.com/qnnn/kimiAdmin/tree/main/example/gif/COS存储.gif)
 
-
+### 无状态登录
+#### cookies
+![无状态](https://github.com/qnnn/kimiAdmin/tree/main/example/photo/无状态登录.png)
+#### redis token
+![token](https://github.com/qnnn/kimiAdmin/tree/main/example/photo/redis存oauth.png)
