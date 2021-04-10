@@ -212,4 +212,4 @@ networks:
 #### cookies
 ![无状态](https://github.com/qnnn/kimiAdmin/tree/main/example/photo/无状态登录.png)
 #### redis token
-![token](https://github.com/qnnn/kimiAdmin/tree/main/example/photo/redis存token.png)
+![token](https://github.com/qnnn/kimiAdmin/tree/main/example/photo/redis存oauth.png)
