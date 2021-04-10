@@ -228,7 +228,7 @@ networks:
 
 ### 消息队列
 > 登录时通过消息队列记录登录日志，写入数据库
-
+![消息队列.png](https://i.loli.net/2021/04/10/q8EQBM9JDOXh6RF.png)
 ![消息](https://github.com/qnnn/kimiAdmin/tree/main/example/photo/消息队列.png)
 
 ### 使用easyExcel导出excel
