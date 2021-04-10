@@ -216,15 +216,15 @@ networks:
 
 ### 无状态登录
 #### cookies
-![无状态](https://github.com/qnnn/kimiAdmin/tree/main/example/photo/无状态登录.png)
+![无状态登录.png](https://i.loli.net/2021/04/10/Aw64pL7kYosRiGD.png)
 #### redis token
-![token](https://github.com/qnnn/kimiAdmin/tree/main/example/photo/redis存oauth.png)
+![redis存oauth.png](https://i.loli.net/2021/04/10/EUtAdrWF8Jnagcl.png)
 
 ### nacos配置和服务列表
 #### nacos+sentinel限流配置
-![流控规则](https://github.com/qnnn/kimiAdmin/tree/main/example/photo/nacos中sentinel流控规则配置.png)
+![nacos中sentinel流控规则配置.png](https://i.loli.net/2021/04/10/WTHLAfJqkNGFxI6.png)
 #### 服务列表
-![服务列表](https://github.com/qnnn/kimiAdmin/tree/main/example/photo/服务列表.png)
+![服务列表.png](https://i.loli.net/2021/04/10/8krITWJYSVONfs4.png)
 
 ### 消息队列
 > 登录时通过消息队列记录登录日志，写入数据库
@@ -232,4 +232,4 @@ networks:
 ![消息队列.png](https://i.loli.net/2021/04/10/q8EQBM9JDOXh6RF.png)
 
 ### 使用easyExcel导出excel
-![exc](https://github.com/qnnn/kimiAdmin/tree/main/example/photo/easyExcel.png)
+![easyExcel.png](https://i.loli.net/2021/04/10/jQpDe7YzZauREHX.png)
