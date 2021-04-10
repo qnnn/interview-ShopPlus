@@ -196,6 +196,7 @@ networks:
 > 只是简单试验，所以只写了一个规则
 
 # 一些功能展示
+> 若不显示，请点击
 ### 动态路由
 ![动态路由](https://github.com/qnnn/kimiAdmin/tree/main/example/gif/动态路由.gif)
 
@@ -206,10 +207,24 @@ networks:
 ![限流](https://github.com/qnnn/kimiAdmin/tree/main/example/gif/限流.gif)
 
 ### COS存储桶
-![COS](https://github.com/qnnn/kimiAdmin/tree/main/example/gif/COS存储小图.gif)
+![COS](https://github.com/qnnn/kimiAdmin/tree/main/example/gif/COS存储.gif)
+
+### 日志记录
+> 记录用户的操作
+![日志](https://github.com/qnnn/kimiAdmin/tree/main/example/photo/日志.png)
 
 ### 无状态登录
 #### cookies
 ![无状态](https://github.com/qnnn/kimiAdmin/tree/main/example/photo/无状态登录.png)
 #### redis token
 ![token](https://github.com/qnnn/kimiAdmin/tree/main/example/photo/redis存oauth.png)
+
+### nacos配置和服务列表
+#### nacos+sentinel限流配置
+![流控规则](https://github.com/qnnn/kimiAdmin/tree/main/example/photo/nacos中sentinel流控规制配置.png)
+#### 服务列表
+![服务列表](https://github.com/qnnn/kimiAdmin/tree/main/example/photo/服务列表.png)
+
+### 消息队列
+> 登录时通过消息队列记录登录日志，写入数据库
+![消息](https://github.com/qnnn/kimiAdmin/tree/main/example/photo/消息队列.png)
