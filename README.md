@@ -222,7 +222,7 @@ networks:
 
 ### nacos配置和服务列表
 #### nacos+sentinel限流配置
-![流控规则](https://github.com/qnnn/kimiAdmin/tree/main/example/photo/nacos中sentinel流控规制配置.png)
+![流控规则](https://github.com/qnnn/kimiAdmin/tree/main/example/photo/nacos中sentinel流控规则配置.png)
 #### 服务列表
 ![服务列表](https://github.com/qnnn/kimiAdmin/tree/main/example/photo/服务列表.png)
 
