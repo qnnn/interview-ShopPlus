@@ -206,7 +206,7 @@ networks:
 ![限流](https://github.com/qnnn/kimiAdmin/tree/main/example/gif/限流.gif)
 
 ### COS存储桶
-![COS](https://github.com/qnnn/kimiAdmin/tree/main/example/gif/COS存储.gif)
+![COS](https://github.com/qnnn/kimiAdmin/tree/main/example/gif/COS存储小图.gif)
 
 ### 无状态登录
 #### cookies
