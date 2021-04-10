@@ -1,6 +1,9 @@
 package com.kimi.myshop.plus.business.dto.excel;
 
 import com.alibaba.excel.annotation.ExcelProperty;
+import com.alibaba.excel.annotation.write.style.ColumnWidth;
+import com.alibaba.excel.annotation.write.style.ContentRowHeight;
+import com.alibaba.excel.annotation.write.style.HeadRowHeight;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.kimi.myshop.plus.provider.domain.Role;
 import lombok.Data;
@@ -14,6 +17,9 @@ import java.util.Set;
  * @author 郭富城
  */
 @Data
+@ContentRowHeight(15)
+@HeadRowHeight(20)
+@ColumnWidth(30)
 public class UserExcel {
 
     @ExcelProperty("用户名")
@@ -41,5 +47,6 @@ public class UserExcel {
     private String status;
 
     @ExcelProperty("角色")
+    @ColumnWidth(50)
     private String roles;
 }

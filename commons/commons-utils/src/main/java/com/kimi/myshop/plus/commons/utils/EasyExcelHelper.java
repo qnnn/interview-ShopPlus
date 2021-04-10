@@ -1,8 +1,19 @@
 package com.kimi.myshop.plus.commons.utils;
 
+import com.alibaba.excel.EasyExcel;
+
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.InputStream;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+/**
+ * @author 郭富城
+ */
 public class EasyExcelHelper {
 
     public static InputStream getResourcesFileInputStream(String fileName) {

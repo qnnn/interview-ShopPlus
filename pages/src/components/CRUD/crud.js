@@ -329,6 +329,8 @@ function CRUD(options) {
      */
     doExport() {
       crud.downloadLoading = true
+      const data = download(crud.url + '/download', crud.getQueryParams())
+      console.log(data)
       download(crud.url + '/download', crud.getQueryParams()).then(result => {
         downloadFile(result, crud.title + '数据', 'xlsx')
         crud.downloadLoading = false

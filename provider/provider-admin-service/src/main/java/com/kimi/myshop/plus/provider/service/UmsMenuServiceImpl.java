@@ -24,6 +24,7 @@ import javax.persistence.EntityExistsException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
@@ -94,6 +95,7 @@ public class UmsMenuServiceImpl implements UmsMenuService {
             menu.setPid(null);
             // 新增的都不含子菜单
             menu.setIsParent(false);
+            menu.setCreateTime(new Date());
             umsMenuRepository.save(menu);
         } else {
             Menu parent = umsMenuRepository.findById(menu.getPid()).orElseGet(Menu::new);
@@ -102,6 +104,7 @@ public class UmsMenuServiceImpl implements UmsMenuService {
                 umsMenuRepository.save(parent);
             }
             menu.setIsParent(false);
+            menu.setCreateTime(new Date());
             umsMenuRepository.save(menu);
         }
 

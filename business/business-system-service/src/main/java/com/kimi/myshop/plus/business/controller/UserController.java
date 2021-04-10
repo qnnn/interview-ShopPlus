@@ -114,11 +114,6 @@ public class UserController {
     @GetMapping("/download")
     public ResponseResult<Object> download(HttpServletResponse response, UserQueryCriteria criteria) throws IOException {
         List<UserDto> queryAll = umsUserService.selectAll(criteria);
-        /**
-         * 文件下载并且失败的时候返回json（默认失败了会返回一个有部分数据的Excel）
-         *
-         * @since 2.1.1
-         */
         // 这里注意 有同学反应使用swagger 会导致各种问题，请直接用浏览器或者用postman
         try {
             response.setContentType("application/vnd.ms-excel");
@@ -127,7 +122,7 @@ public class UserController {
             String fileName = URLEncoder.encode("测试", StandardCharsets.UTF_8).replaceAll("\\+", "%20");
             response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ".xlsx");
             // 这里需要设置不关闭流
-            EasyExcel.write(response.getOutputStream(), UserExcel.class).autoCloseStream(Boolean.FALSE).sheet("模板")
+            EasyExcel.write(response.getOutputStream(), UserExcel.class).autoCloseStream(Boolean.FALSE).sheet("用户数据")
                     .doWrite(data(queryAll));
         } catch (Exception e) {
             // 重置response
@@ -139,7 +134,7 @@ public class UserController {
             map.put("message", "下载文件失败" + e.getMessage());
             response.getWriter().println(JSON.toJSONString(map));
         }
-        return null;
+        return new ResponseResult<>(ResponseResult.CodeStatus.OK);
 
     }
 
@@ -154,6 +149,7 @@ public class UserController {
     private List<UserExcel> data(List<UserDto> toExcel) {
         List<UserExcel> result = new ArrayList<>();
         for (UserDto userDto : toExcel) {
+            StringBuilder roles = new StringBuilder();
             UserExcel temp = new UserExcel();
             temp.setUsername(userDto.getUsername());
             temp.setEmail(userDto.getEmail());
@@ -162,7 +158,10 @@ public class UserController {
             temp.setLoginTime(userDto.getLoginTime());
             temp.setNickName(userDto.getNickName());
             temp.setNote(userDto.getNote());
-            temp.setRoles(userDto.getRoles().toString());
+            if (userDto.getRoles().iterator().hasNext()){
+                roles.append(userDto.getRoles().iterator().next().getName());
+            }
+            temp.setRoles(roles.toString());
             temp.setStatus(userDto.getStatus() == 1 ? "激活" : "冻结");
             result.add(temp);
         }

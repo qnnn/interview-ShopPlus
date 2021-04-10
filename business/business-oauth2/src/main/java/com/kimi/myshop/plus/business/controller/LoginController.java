@@ -138,7 +138,6 @@ public class LoginController {
         return new ResponseResult<LoginInfo>(ResponseResult.CodeStatus.OK, "获取用户信息", loginInfo);
     }
 
-    @PreAuthorize("hasAuthority('USER')")
     @PostMapping(value = "/vue-admin-template/user/logout")
     public ResponseResult<Void> logout(HttpServletRequest request) {
         String token = request.getParameter("access_token");

@@ -2,25 +2,14 @@ package com.kimi.myshop.plus.business.controller;
 
 
 import cn.hutool.core.collection.CollectionUtil;
-import com.alibaba.excel.EasyExcel;
-import com.alibaba.fastjson.JSON;
 import com.kimi.myshop.plus.business.annotation.Log;
-import com.kimi.myshop.plus.business.dto.excel.UserExcel;
 import com.kimi.myshop.plus.commons.dto.ResponseResult;
 import com.kimi.myshop.plus.commons.utils.SecurityUtils;
 import com.kimi.myshop.plus.provider.api.UmsMenuService;
 import com.kimi.myshop.plus.provider.domain.Menu;
-import com.kimi.myshop.plus.provider.domain.UmsAdmin;
-import com.kimi.myshop.plus.provider.domain.User;
 import com.kimi.myshop.plus.provider.dto.MenuDto;
 import com.kimi.myshop.plus.provider.dto.MenuQueryCriteria;
-import com.kimi.myshop.plus.provider.dto.UserDto;
-import com.kimi.myshop.plus.provider.dto.UserQueryCriteria;
 import org.apache.dubbo.config.annotation.Reference;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,16 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -74,7 +56,7 @@ public class MenuController {
 
     /**
      *  懒加载子类
-     * @param pid
+     * @param pid 父级id
      * @return
      */
     @GetMapping("/lazy")
@@ -115,21 +97,4 @@ public class MenuController {
     }
 
 
-    private List<UserExcel> data(List<UserDto> toExcel) {
-        List<UserExcel> result = new ArrayList<>();
-        for (UserDto userDto : toExcel) {
-            UserExcel temp = new UserExcel();
-            temp.setUsername(userDto.getUsername());
-            temp.setEmail(userDto.getEmail());
-            temp.setIcon(userDto.getIcon());
-            temp.setCreateTime(userDto.getCreateTime());
-            temp.setLoginTime(userDto.getLoginTime());
-            temp.setNickName(userDto.getNickName());
-            temp.setNote(userDto.getNote());
-            temp.setRoles(userDto.getRoles().toString());
-            temp.setStatus(userDto.getStatus() == 1 ? "激活" : "冻结");
-            result.add(temp);
-        }
-        return result;
-    }
 }

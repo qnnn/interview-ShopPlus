@@ -1,10 +1,17 @@
 package com.kimi.myshop.plus.business.controller;
 
+import com.alibaba.excel.EasyExcel;
+import com.alibaba.fastjson.JSON;
 import com.kimi.myshop.plus.business.annotation.Log;
+import com.kimi.myshop.plus.business.dto.excel.RoleExcel;
+import com.kimi.myshop.plus.business.dto.excel.UserExcel;
 import com.kimi.myshop.plus.commons.dto.ResponseResult;
 import com.kimi.myshop.plus.provider.api.UmsRoleService;
 import com.kimi.myshop.plus.provider.domain.Role;
+import com.kimi.myshop.plus.provider.dto.RoleDto;
 import com.kimi.myshop.plus.provider.dto.RoleQueryCriteria;
+import com.kimi.myshop.plus.provider.dto.UserDto;
+import com.kimi.myshop.plus.provider.dto.UserQueryCriteria;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +21,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -70,6 +85,36 @@ public class RoleController {
         }
         umsRoleService.delete(ids);
         return new ResponseResult<>(ResponseResult.CodeStatus.OK,"删除角色成功！");
+    }
+
+    @Log("导出用户数据")
+    @GetMapping("/download")
+    public ResponseResult<Object> download(HttpServletResponse response, RoleQueryCriteria criteria) throws IOException {
+        List<RoleDto> queryAll = umsRoleService.selectAll(criteria);
+        try {
+            response.setContentType("application/vnd.ms-excel");
+            response.setCharacterEncoding("utf-8");
+            String fileName = URLEncoder.encode("easyExcel", StandardCharsets.UTF_8).replaceAll("\\+", "%20");
+            response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ".xlsx");
+            EasyExcel.write(response.getOutputStream(), UserExcel.class).autoCloseStream(Boolean.FALSE).sheet("用户数据")
+                    .doWrite(data(queryAll));
+        } catch (Exception e) {
+            response.reset();
+            response.setContentType("application/json");
+            response.setCharacterEncoding("utf-8");
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("status", "failure");
+            map.put("message", "下载文件失败" + e.getMessage());
+            response.getWriter().println(JSON.toJSONString(map));
+        }
+        return new ResponseResult<>(ResponseResult.CodeStatus.OK);
+
+    }
+
+    private List<RoleExcel> data(List<RoleDto> toExcel) {
+        List<RoleExcel> result = new ArrayList<>();
+
+        return result;
     }
 
 }
