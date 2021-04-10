@@ -196,7 +196,7 @@ networks:
 > 只是简单试验，所以只写了一个规则
 
 # 一些功能展示
-> 若不显示，请点击
+> 若不显示，请点击。前几张动图较大，若加载不出，原图在example/gif目录下
 ### 动态路由
 ![动态路由](https://github.com/qnnn/kimiAdmin/blob/main/example/gif/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1.gif?raw=true)
 
