@@ -212,24 +212,24 @@ networks:
 ### 日志记录
 > 记录用户的操作
 
-![日志.png](https://i.loli.net/2021/04/10/VYfXhF8lqSaOjwZ.png)
+![日志.png](https://github.com/qnnn/kimiAdmin/blob/main/example/photo/%E6%97%A5%E5%BF%97.png?raw=true)
 
 ### 无状态登录
 #### cookies
-![无状态登录.png](https://i.loli.net/2021/04/10/Aw64pL7kYosRiGD.png)
+![无状态登录.png](https://github.com/qnnn/kimiAdmin/blob/main/example/photo/%E6%97%A0%E7%8A%B6%E6%80%81%E7%99%BB%E5%BD%95.png?raw=true)
 #### redis token
-![redis存oauth.png](https://i.loli.net/2021/04/10/EUtAdrWF8Jnagcl.png)
+![redis存oauth.png](https://github.com/qnnn/kimiAdmin/blob/main/example/photo/redis%E5%AD%98oauth.png?raw=true)
 
 ### nacos配置和服务列表
 #### nacos+sentinel限流配置
-![nacos中sentinel流控规则配置.png](https://i.loli.net/2021/04/10/WTHLAfJqkNGFxI6.png)
+![nacos中sentinel流控规则配置.png](https://github.com/qnnn/kimiAdmin/blob/main/example/photo/nacos%E4%B8%ADsentinel%E6%B5%81%E6%8E%A7%E8%A7%84%E5%88%99%E9%85%8D%E7%BD%AE.png?raw=true)
 #### 服务列表
-![服务列表.png](https://i.loli.net/2021/04/10/8krITWJYSVONfs4.png)
+![服务列表.png](https://github.com/qnnn/kimiAdmin/blob/main/example/photo/%E6%9C%8D%E5%8A%A1%E5%88%97%E8%A1%A8.png?raw=true)
 
 ### 消息队列
 > 登录时通过消息队列记录登录日志，写入数据库
 
-![消息队列.png](https://i.loli.net/2021/04/10/q8EQBM9JDOXh6RF.png)
+![消息队列.png](https://github.com/qnnn/kimiAdmin/blob/main/example/photo/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97.png?raw=true)
 
 ### 使用easyExcel导出excel
-![easyExcel.png](https://i.loli.net/2021/04/10/jQpDe7YzZauREHX.png)
+![easyExcel.png](https://github.com/qnnn/kimiAdmin/blob/main/example/photo/easyExcel.png?raw=true)
