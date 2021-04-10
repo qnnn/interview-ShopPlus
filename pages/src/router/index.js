@@ -3,7 +3,8 @@ import Router from 'vue-router'
 import {getToken, setToken, removeToken} from '@/utils/auth'
 import store from '@/store'
 import {buildMenus} from '@/api/system/menu'
-import permission, {filterAsyncRouter} from '@/store/modules/permission'
+import {filterAsyncRouter} from '@/store/modules/permission'
+import {Message} from 'element-ui'
 
 Vue.use(Router)
 
@@ -156,7 +157,10 @@ router.beforeEach(function (to, from, next) {
           // 动态路由，拉取菜单
           loadMenus(next, to)
         }).catch(() => {
-          alert('无效token！请勿修改token')
+          Message({
+            message: '网络异常！请检查网络是否可用！',
+            type: 'warning'
+          })
           next()
           // store.dispatch('user/logout').then(() => {
           //   location.reload() // 为了重新实例化vue-router对象 避免bug
