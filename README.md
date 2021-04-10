@@ -212,7 +212,7 @@ networks:
 ### 日志记录
 > 记录用户的操作
 
-![日志](https://github.com/qnnn/kimiAdmin/tree/main/example/photo/日志.png)
+![日志.png](https://i.loli.net/2021/04/10/VYfXhF8lqSaOjwZ.png)
 
 ### 无状态登录
 #### cookies
@@ -228,8 +228,8 @@ networks:
 
 ### 消息队列
 > 登录时通过消息队列记录登录日志，写入数据库
+
 ![消息队列.png](https://i.loli.net/2021/04/10/q8EQBM9JDOXh6RF.png)
-![消息](https://github.com/qnnn/kimiAdmin/tree/main/example/photo/消息队列.png)
 
 ### 使用easyExcel导出excel
 ![exc](https://github.com/qnnn/kimiAdmin/tree/main/example/photo/easyExcel.png)
