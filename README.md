@@ -208,4 +208,8 @@ networks:
 ### COS存储桶
 ![COS](https://github.com/qnnn/kimiAdmin/tree/main/example/gif/COS存储.gif)
 
-
+### 无状态登录
+#### cookies
+![无状态](https://github.com/qnnn/kimiAdmin/tree/main/example/gif/无状态登录.png)
+#### redis token
+![token](https://github.com/qnnn/kimiAdmin/tree/main/example/gif/redis存token.png)
