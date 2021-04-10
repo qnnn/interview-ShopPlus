@@ -210,6 +210,6 @@ networks:
 
 ### 无状态登录
 #### cookies
-![无状态](https://github.com/qnnn/kimiAdmin/tree/main/example/gif/无状态登录.png)
+![无状态](https://github.com/qnnn/kimiAdmin/tree/main/example/photo/无状态登录.png)
 #### redis token
-![token](https://github.com/qnnn/kimiAdmin/tree/main/example/gif/redis存token.png)
+![token](https://github.com/qnnn/kimiAdmin/tree/main/example/photo/redis存token.png)
