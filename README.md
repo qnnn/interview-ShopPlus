@@ -201,13 +201,13 @@ networks:
 ![动态路由](https://github.com/qnnn/kimiAdmin/blob/main/example/gif/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1.gif?raw=true)
 
 ### RBAC角色管理
-![RBAC](https://github.com/qnnn/kimiAdmin/tree/main/example/gif/RBAC角色管理.gif)
+![RBAC](https://github.com/qnnn/kimiAdmin/blob/main/example/gif/RBAC%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.gif?raw=true)
 
 ### Sentinel限流
-![限流](https://github.com/qnnn/kimiAdmin/tree/main/example/gif/限流.gif)
+![限流](https://github.com/qnnn/kimiAdmin/blob/main/example/gif/%E9%99%90%E6%B5%81.gif?raw=true)
 
 ### COS存储桶
-![COS](https://github.com/qnnn/kimiAdmin/tree/main/example/gif/COS存储.gif)
+![COS](https://github.com/qnnn/kimiAdmin/blob/main/example/gif/COS%E5%AD%98%E5%82%A8.gif?raw=true)
 
 ### 日志记录
 > 记录用户的操作
